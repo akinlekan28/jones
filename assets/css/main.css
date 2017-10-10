@@ -2006,7 +2006,10 @@ footer ul li {
   line-height: 25px;
 }
 footer ul li a {
-  color: #999;
+  color: #e2e2e2;
+}
+footer ul li a:hover {
+  color: #e2e2e2;
 }
 footer ul li.tweet {
   margin-bottom: 15px;
@@ -3308,8 +3311,8 @@ ul.contact-info2 i.fa {
     font-size: 18px;
   }
   .section-subcontent {
-    font-size: 12px;
-    line-height: 17px;
+    font-size: 13px;
+    line-height: 1.2;
   }
   #portfolio a.filter {
     font-size: 10px;

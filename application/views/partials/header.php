@@ -88,11 +88,21 @@
                     </li>
 
                     <li class="nav-item dropdown">
-                        <a class="nav-link" href="#" aria-haspopup="true" aria-expanded="false">Services</a>
+                        <a class="nav-link" href="<?php echo base_url();?>#other-services" aria-haspopup="true" aria-expanded="false">Services</a>
                     </li>
 
                     <li class="nav-item dropdown">
-                        <a class="nav-link" href="#" aria-haspopup="true" aria-expanded="false">Portfolio</a>
+                        <a class="nav-link" href="<?php echo base_url();?>#showcase" aria-haspopup="true" aria-expanded="false">Showcase</a>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Products</a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="portfolio-col-2.html">Portfolio 2 Columns</a>
+                            <a class="dropdown-item" href="portfolio-col-3.html">Portfolio 3 Columns</a>
+                            <a class="dropdown-item" href="portfolio-col-4.html">Portfolio 4 Columns</a>
+                            <a class="dropdown-item" href="portfolio-item.html">Portfolio Single</a>
+                        </div>
                     </li>
 
                     <li class="nav-item dropdown">
@@ -103,12 +113,6 @@
                         <a class="nav-link" href="#" aria-haspopup="true" aria-expanded="false">Contact Us</a>
                     </li>
                 </ul>
-                <form class="form-inline">
-                    <div class="top_search_con">
-                        <input class=" mr-sm-2" type="text" placeholder="Search Here ...">
-                        <span class="top_search_icon"><i class="icon-magnifier"></i></span>
-                    </div>
-                </form>
             </div>
 
             <!-- Mobile Menu Start -->
@@ -122,11 +126,11 @@
                 </li>
 
                 <li>
-                    <a href="#">Services</a>
+                    <a href="<?php echo base_url();?>#other-services">Services</a>
                 </li>
 
                 <li>
-                    <a href="#">Portfolio</a>
+                    <a href="<?php echo base_url();?>#showcase">Showcase</a>
                 </li>
 
                 <li>
@@ -140,4 +144,3 @@
             <!-- Mobile Menu End -->
         </div>
     </nav>
-
