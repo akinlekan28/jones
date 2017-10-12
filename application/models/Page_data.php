@@ -1,0 +1,47 @@
+<?php
+
+/**
+ * Created by PhpStorm.
+ * User: Olalekan
+ * Date: 12/10/2017
+ * Time: 2:18 AM
+ */
+class Page_data
+{
+    public $data = [
+
+
+        'admin_addproductcategory' => [
+            'title' => 'Product',
+            'info' => 'Add Product Category',
+            'tab' => 'Edtel Admin | Product Category',
+            'links' => [
+
+            ]
+        ],
+
+    ];
+
+    function get_data($page_id)
+    {
+        $data = [
+            'title' => '',
+            'info' => '',
+            'tab' => '',
+            'links' => []
+        ];
+
+        $d = element($page_id, $this->data);
+
+        if ($d)
+        {
+            $data['title'] = element('title', $d);
+            $data['info'] = element('info', $d);
+            $data['tab'] = element('tab' , $d);
+            $data['links'] = element('links', $d, []);
+
+        }
+
+        return $data;
+    }
+}
