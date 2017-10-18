@@ -39,7 +39,7 @@ class Category extends MY_Model
             'null' => FALSE,
         ),
 
-        '$category_description' =>array(
+        'category_description' =>array(
             'type' => 'VARCHAR',
             'constraint'=> 300,
             'null' => FALSE,

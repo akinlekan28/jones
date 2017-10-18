@@ -14,10 +14,9 @@
 <div class="clearfix"> </div>
 </div>
 
-<!---->
-<!--scrolling js-->
-<script src="<?php echo base_url();?>adminassets/js/jquery.nicescroll.js"></script>
-<script src="<?php echo base_url();?>adminassetsjs/scripts.js"></script>
-<!--//scrolling js-->
+
+<script src="<?php echo base_url();?>adminassets/js/sweetalert.min.js"></script>
+<script src="<?php echo base_url(); ?>adminassets/js/jquery.dataTables.min.js"></script>
+
 </body>
 </html>

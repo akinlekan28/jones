@@ -1,0 +1,191 @@
+<?php
+
+/**
+ * Created by PhpStorm.
+ * User: Olalekan
+ * Date: 19/09/2017
+ * Time: 11:13 PM
+ */
+class Users extends MY_Model
+{
+    public $user_id;
+
+    public $firstname;
+
+    public $lastname;
+
+    public $department_id;
+
+    public $email;
+
+    public $password;
+
+    public $password_salt;
+
+    public $privilege;
+
+    public $question_id;
+
+    public $answer;
+
+    public $date_registered;
+
+    public $is_delete;
+
+    protected $table = 'users';
+
+    protected $primary = 'user_id';
+
+    public $columns = array(
+
+        'user_id'=> array(
+            'type' => 'INT',
+            'constraint' => 11,
+            'unsigned' => TRUE,
+            'auto_increment'=> TRUE,
+        ),
+
+        'firstname' =>array(
+            'type' => 'VARCHAR',
+            'constraint'=> 250,
+            'null' => FALSE,
+        ),
+
+        'lastname' =>array(
+            'type' => 'VARCHAR',
+            'constraint'=> 250,
+            'null' => FALSE,
+        ),
+
+        'department_id' =>array(
+            'type' => 'INT',
+            'constraint'=> 11,
+            'null' => FALSE,
+        ),
+
+        'email' =>array(
+            'type' => 'VARCHAR',
+            'constraint'=> 150,
+            'null' => FALSE,
+        ),
+
+        'password' =>array(
+            'type' => 'VARCHAR',
+            'constraint'=> 250,
+            'null' => FALSE,
+        ),
+
+        'password_salt' =>array(
+            'type' => 'VARCHAR',
+            'constraint'=> 60,
+            'null' => FALSE,
+        ),
+
+        'privilege' =>array(
+            'type' => 'varchar',
+            'constraint'=> 200,
+            'null' => FALSE,
+        ),
+
+        'question_id' =>array(
+            'type' => 'INT',
+            'constraint'=> 11,
+            'null' => FALSE,
+        ),
+
+        'answer' =>array(
+            'type' => 'VARCHAR',
+            'constraint'=> 300,
+            'null' => FALSE,
+        ),
+
+        'date_registered'=> array(
+            'type' => 'DATE',
+            'null' => FALSE,
+        ),
+
+        'is_delete' => array(
+            'type' => 'INT',
+            'constraint' => 11,
+            'default' => 0,
+        )
+    );
+
+    public function getDepartment($department_id = NULL)
+    {
+        if ($department_id) {
+            $department = $this->departments->getOne('', array('is_delete' => 0, 'department_id' => $department_id));
+            if ($department->department_id) {
+                return $department->department_name;
+            } else {
+                return NULL;
+            }
+        } else {
+            $department = $this->departments->getOne('', array('is_delete' => 0, 'department_id' => $this->department_id));
+            if ($department->department_id) {
+                return $department->department_name;
+            } else {
+                return NULL;
+            }
+        }
+    }
+
+    public function is($privilege ='')
+    {
+        if(is_array($privilege))
+        {
+            return in_array($this->privilege  , $privilege);
+        }
+
+        $roles = func_get_args();
+
+        return in_array($this->privilege  , $roles);
+    }
+
+    public function insertToken($email, $user_id)
+    {
+        $token = substr(sha1(rand()), 0, 30);
+
+        $data = array(
+                'token' => $token,
+                'user_id' => $user_id,
+                'email' => $email,
+                'date_created' => date('Y-m-d H:m:s'),
+               
+            );
+        $query = $this->db->insert_string('tokens',$data);
+        $this->db->query($query);
+        return $token ;
+
+    }
+
+    public function update_password($createPassword, $user_id)
+    {
+        $data = array(
+            'password' => $createPassword
+        );
+        $response = $this->db->update('users', $data, array('user_id' => $user_id));
+        return $response;
+    }
+
+    public function getByToken($token)
+    {
+        $q = $this->db->get_where('tokens', array('token' => $token), 1);
+        if($this->db->affected_rows() > 0){
+            $row = $q->row();
+
+            if(date('Y-m-d') > $row->date_created)
+            {
+                return false;
+            }
+            else
+            {
+                return $row;
+            }
+            
+        }else{
+            error_log('no user found getUserInfo('.$token.')');
+            return false;
+        }
+    }
+}

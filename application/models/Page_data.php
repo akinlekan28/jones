@@ -20,6 +20,24 @@ class Page_data
             ]
         ],
 
+        'admin_addproduct' => [
+            'title' => 'Product',
+            'info' => 'Add Product',
+            'tab' => 'Edtel Admin | Product',
+            'links' => [
+
+            ]
+        ],
+
+        'admin_allproduct' => [
+            'title' => 'Products',
+            'info' => 'View Products',
+            'tab' => 'Edtel Admin | Product List',
+            'links' => [
+
+            ]
+        ],
+
     ];
 
     function get_data($page_id)

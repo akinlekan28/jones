@@ -22,6 +22,32 @@ $config = array(
          ),
     ),
 
+    'product' => array(
+        array(
+            'field' => 'product_name',
+            'label' => 'Product Name',
+            'rules' => 'required'
+        ),
+
+        array(
+            'field' => 'product_model',
+            'label' => 'Product Model',
+            'rules' => 'required'
+        ),
+
+        array(
+            'field' => 'product_description',
+            'label' => 'Product Description',
+            'rules' => 'required'
+        ),
+
+        array(
+            'field' => 'category_id',
+            'label' => 'Category Description',
+            'rules' => 'required'
+        ),
+    ),
+
 
 );
 

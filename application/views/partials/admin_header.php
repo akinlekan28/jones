@@ -15,20 +15,20 @@
     <meta name="keywords" content="Minimal Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template,
 Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
     <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
-    <link href="<?php echo base_url()?>/adminassets/css/bootstrap.min.css" rel='stylesheet' type='text/css' />
+    <link href="<?php echo base_url()?>adminassets/css/bootstrap.min.css" rel='stylesheet' type='text/css' />
     <!-- Custom Theme files -->
-    <link href="<?php echo base_url()?>/adminassets/css/style.css" rel='stylesheet' type='text/css' />
-    <link href="<?php echo base_url()?>/adminassets/css/font-awesome.css" rel="stylesheet">
-    <script src="<?php echo base_url()?>/adminassets/js/jquery.min.js"> </script>
-    <script src="<?php echo base_url()?>/adminassets/js/bootstrap.min.js"> </script>
+    <link href="<?php echo base_url(); ?>adminassets/css/jquery.dataTables.min.css" rel="stylesheet">
+    <link href="<?php echo base_url()?>adminassets/css/style.css" rel='stylesheet' type='text/css' />
+    <link href="<?php echo base_url()?>adminassets/css/font-awesome.css" rel="stylesheet">
+    <link href="<?php echo base_url();?>adminassets/css/sweetalert.css" rel="stylesheet" type="text/css"/>
+    <script src="<?php echo base_url()?>adminassets/js/jquery.min.js"> </script>
+    <script src="<?php echo base_url()?>adminassets/js/bootstrap.min.js"> </script>
 
     <!-- Mainly scripts -->
-    <script src="<?php echo base_url()?>/adminassets/js/jquery.metisMenu.js"></script>
-    <script src="<?php echo base_url()?>/adminassets/js/jquery.slimscroll.min.js"></script>
+    <script src="<?php echo base_url()?>adminassets/js/jquery.metisMenu.js"></script>
     <!-- Custom and plugin javascript -->
-    <link href="<?php echo base_url()?>/adminassets/css/custom.css" rel="stylesheet">
-    <script src="<?php echo base_url()?>/adminassets/js/custom.js"></script>
-    <script src="<?php echo base_url()?>/adminassets/js/screenfull.js"></script>
+    <link href="<?php echo base_url()?>adminassets/css/custom.css" rel="stylesheet">
+    <script src="<?php echo base_url()?>adminassets/js/screenfull.js"></script>
     <script>
         $(function () {
             $('#supported').text('Supported/allowed: ' + !!screenfull.enabled);
@@ -62,7 +62,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <h1 style="background-color: #ffffff!important;"> <a class="navbar-brand" href="<?php echo site_url('admin/index')?>">Edtel</a></h1>
+            <h1 style="background-color: #ffffff!important;"> <a class="navbar-brand" href="<?php echo site_url('admin/index')?>">Edtel CMS</a></h1>
         </div>
         <div class=" border-bottom">
             <div class="full-left">
@@ -87,7 +87,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
                                 <li><a href="<?php echo site_url('admin/addProduct')?>" class=" hvr-bounce-to-right"><i class="fa fa-cart-plus nav_icon"></i>Add Product</a></li>
 
-                                <li><a href="<?php echo site_url('admin/allProducts')?>" class=" hvr-bounce-to-right"><i class="fa fa-list-alt nav_icon"></i>All Product</a></li>
+                                <li><a href="<?php echo site_url('admin/allProduct')?>" class=" hvr-bounce-to-right"><i class="fa fa-list-alt nav_icon"></i>All Product</a></li>
 
                             </ul>
                         </li>
