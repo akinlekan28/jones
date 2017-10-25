@@ -81,7 +81,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         </li>
 
                         <li>
-                            <a href="#" class=" hvr-bounce-to-right"><i class="fa fa-shopping-cart nav_icon"></i> <span class="nav-label">Products</span><span class="fa arrow"></span></a>
+                            <a href="" class=" hvr-bounce-to-right"><i class="fa fa-shopping-cart nav_icon"></i> <span class="nav-label">Products</span><span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li><a href="<?php echo site_url('admin/addProductCategory')?>" class=" hvr-bounce-to-right"> <i class="fa fa-pencil-square-o nav_icon"></i>Add Product Category</a></li>
 
@@ -93,11 +93,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         </li>
 
                         <li>
-                            <a href="#" class=" hvr-bounce-to-right"><i class="fa fa-newspaper-o nav_icon"></i> <span class="nav-label">Blog</span><span class="fa arrow"></span></a>
+                            <a href="" class=" hvr-bounce-to-right"><i class="fa fa-newspaper-o nav_icon"></i> <span class="nav-label">Blog</span><span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
-                                <li><a href="<?php echo site_url('admin/addProductCategory')?>" class=" hvr-bounce-to-right"> <i class="fa fa-bullhorn nav_icon"></i>Create Post</a></li>
+                                <li><a href="<?php echo site_url('admin/createPost')?>" class=" hvr-bounce-to-right"> <i class="fa fa-bullhorn nav_icon"></i>Create Post</a></li>
 
-                                <li><a href="<?php echo site_url('admin/addProduct')?>" class=" hvr-bounce-to-right"><i class="fa fa-eye nav_icon"></i>View Posts</a></li>
+                                <li><a href="<?php echo site_url('admin/allPost')?>" class=" hvr-bounce-to-right"><i class="fa fa-eye nav_icon"></i>View Posts</a></li>
 
                                 <li><a href="<?php echo site_url('admin/allProducts')?>" class=" hvr-bounce-to-right"><i class="fa fa-book nav_icon"></i>Comments</a></li>
 

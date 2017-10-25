@@ -31,6 +31,12 @@ class Installer extends MY_Controller
     {
         $this->load->dbforge();
 
+        //Add Blog Table
+        $this->load->model('Blog');
+        $this->dbforge->add_field($this->Blog->columns);
+        $this->dbforge->add_key('post_id', TRUE);
+        $this->dbforge->create_table('blog', TRUE);
+
         //Add Users Table
         $this->load->model('Users');
         $this->dbforge->add_field($this->Users->columns);

@@ -38,6 +38,24 @@ class Page_data
             ]
         ],
 
+        'admin_createpost' => [
+            'title' => 'Blog',
+            'info' => 'Create Post',
+            'tab' => 'Edtel Admin | Blog ',
+            'links' => [
+
+            ]
+        ],
+
+        'admin_allpost' => [
+            'title' => 'Blog',
+            'info' => 'View Posts',
+            'tab' => 'Edtel Admin | Blog',
+            'links' => [
+
+            ]
+        ],
+
     ];
 
     function get_data($page_id)

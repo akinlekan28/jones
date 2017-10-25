@@ -12,7 +12,8 @@ class Admin extends MY_Controller
         parent::__construct();
         $this->load->model(array(
           'category',
-            'product'
+            'product',
+            'blog'
         ));
 
     }
@@ -244,6 +245,155 @@ class Admin extends MY_Controller
             );
 
             $success = $product->update($value , $product_id);
+
+            if($success)
+            {
+                echo json_encode(1);
+            }
+            else
+            {
+                echo json_encode(0);
+
+            }
+        }
+    }
+
+    public function createPost()
+    {
+
+        if($this->input->post() && $this->form_validation->run('blogpost')){
+            $post = $this->input->post();
+
+            $clean = $this->security->xss_clean($post);
+
+            $config['upload_path'] = './uploads/blog';
+            $config['allowed_types'] = '*';
+            $config['overwrite'] = TRUE;
+            $config['max_size']  = 10000;
+            $config['max_width'] = 0;
+            $config['max_height'] = 0;
+            $config['file_name'] = $clean['post_title'];
+
+            $this->load->library('upload', $config);
+
+            if(!$this->upload->do_upload('post_pictures'))
+            {
+
+                $data['response'] = FALSE;
+                $data['message'] = $this->upload->display_errors();
+            }
+            else{
+
+                $value = array(
+                    'post_title' => $clean['post_title'],
+                    'category_id' => $clean['category_id'],
+                    'post_description' => $clean['post_description'],
+                    'post_pictures' => 'uploads/blog/'.$this->upload->data('file_name'),
+                    'date_added' => date("Y-m-d H:m:s"),
+//                    'user_id' => $this->current_user->user_id,
+                );
+
+                $success = $this->blog->insert($value);
+
+                if($success){
+                    $data['response'] = TRUE;
+                    $data['message'] = "Blog Post successfully Published";
+                }
+                else{
+                    $data['response'] = FALSE;
+                    $data['message'] = "Error Publishing Blog Post";
+                }
+
+            }
+
+        }
+
+        $data['categories'] = $this->category->getAll('' , array('is_delete' => 0));
+        $this->adminview->_output(['admin/blog/createpost'] , $data);
+    }
+
+    public function editPost($blogpost_id)
+    {
+        $blogpost = $this->blog->getOne('', array('post_id' => $blogpost_id, 'is_delete' => 0));
+
+        if(!$blogpost->post_id){
+            $data['title'] = "No Record Found";
+            $data['message'] = "Content Does not Exits or it has been Deleted!";
+            $this->load->view('error/404' , $data);
+
+            return;
+        }
+        else {
+
+            if ($this->input->post() && $this->form_validation->run('blogpost')) {
+                $post = $this->input->post();
+                $clean = $this->security->xss_clean($post);
+
+                $config['upload_path'] = './uploads/blog';
+                $config['allowed_types'] = 'jpg|png|gif';
+                $config['overwrite'] = TRUE;
+                $config['max_size'] = 10000;
+                $config['max_width'] = 0;
+                $config['max_height'] = 0;
+                $config['file_name'] = $clean['post_title'];
+
+                $this->load->library('upload', $config);
+
+                if (!$this->upload->do_upload('product_pictures')) {
+
+                    $data['response'] = FALSE;
+                    $data['message'] = $this->upload->display_errors();
+                } else {
+
+                    $values = array(
+                        'post_title' => $clean['post_title'],
+                        'product_model' => $clean['product_model'],
+                        'post_description' => $clean['post_description'],
+                        'product_pictures' => 'uploads/blog/' . $this->upload->data('file_name'),
+                        'category_id' => $clean['category_id'],
+                        'date_added' => date("Y-m-d H:m:s"),
+//                    'user_id' => $this->current_user->user_id,
+                    );
+
+                    $success = $this->product->insert($values);
+
+                    if ($success) {
+                        $data['response'] = TRUE;
+                        $data['message'] = "Product Information Successfully Added";
+                    } else {
+                        $data['response'] = FALSE;
+                        $data['message'] = "Error Adding Product Information Type";
+                    }
+                }
+            }
+        }
+
+        $data['categories'] = $this->category->getAll('', array('is_delete' => 0), '', '', 'category_id');
+        $data['post'] = $blogpost;
+        $this->load->view('admin/blog/editPost', $data);
+    }
+
+    public function allPost()
+    {
+        $data['posts'] = $this->blog->getAll('', array('is_delete' => 0), '', '', 'post_id');
+        $this->adminview->_output(['admin/blog/viewPosts'], $data);
+    }
+
+    public function deletePost($post_id)
+    {
+        $post = $this->blog->getOne('', array('post_id' => $post_id, 'is_delete' => 0));
+
+        if(!$post->post_id)
+        {
+            echo json_encode(0);
+        }
+        elseif($post->post_id)
+        {
+            $value = array(
+                'is_delete' => 1
+            );
+
+            $success = $post->update($value , $post_id);
 
             if($success)
             {

@@ -48,6 +48,21 @@ $config = array(
         ),
     ),
 
+    'blogpost' => array(
+        array(
+            'field' => 'post_title',
+            'label' => 'Post Title',
+            'rules' => 'required'
+        ),
+
+        array(
+            'field' => 'post_description',
+            'label' => 'Product Description',
+            'rules' => 'required'
+        ),
+
+    ),
+
 
 );
 
