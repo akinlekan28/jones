@@ -106,7 +106,7 @@
                     </li>
 
                     <li class="nav-item dropdown">
-                        <a class="nav-link" href="#" aria-haspopup="true" aria-expanded="false">Blog</a>
+                        <a class="nav-link" href="<?php echo site_url('home/blog')?>" aria-haspopup="true" aria-expanded="false">Blog</a>
                     </li>
 
                     <li class="nav-item dropdown">

@@ -168,40 +168,36 @@ class Admin extends MY_Controller
 
     public function editProduct($product_id)
     {
-        $product = $this->product->getOne('', array('product_id' => $product_id, 'is_delete' => 0));
+        $singleProduct = $this->product->getOne('', array('product_id' => $product_id, 'is_delete' => 0));
 
-        if(!$product->product_id){
+        if(!$singleProduct->product_id){
             $data['title'] = "No Record Found";
             $data['message'] = "Content Does not Exits or it has been Deleted!";
             $this->load->view('error/404' , $data);
 
             return;
         }
-        else{
+        else {
 
-            if($this->input->post() && $this->form_validation->run('product')){
-
+            if ($this->input->post() && $this->form_validation->run('product')) {
                 $post = $this->input->post();
-
                 $clean = $this->security->xss_clean($post);
 
                 $config['upload_path'] = './uploads/product';
                 $config['allowed_types'] = 'jpg|png|gif';
                 $config['overwrite'] = TRUE;
-                $config['max_size']  = 10000;
+                $config['max_size'] = 10000;
                 $config['max_width'] = 0;
                 $config['max_height'] = 0;
                 $config['file_name'] = $clean['product_model'];
 
                 $this->load->library('upload', $config);
 
-                if(!$this->upload->do_upload('product_pictures'))
-                {
+                if (!$this->upload->do_upload('product_pictures')) {
 
                     $data['response'] = FALSE;
                     $data['message'] = $this->upload->display_errors();
-                }
-                else{
+                } else {
 
                     $values = array(
                         'product_name' => $clean['product_name'],
@@ -210,23 +206,24 @@ class Admin extends MY_Controller
                         'product_pictures' => 'uploads/product/' . $this->upload->data('file_name'),
                         'category_id' => $clean['category_id'],
                         'date_edited' => date("Y-m-d H:m:s"),
-//                        'user_id' => $this->current_user->user_id,
+//                    'user_id' => $this->current_user->user_id,
                     );
 
-                    $success = $product->update($values , $product_id);
-                    if($success){
+                    $success = $singleProduct->update($values, $product_id);
+
+                    if ($success) {
                         $data['response'] = TRUE;
-                        $data['message'] = "Product Information Updated";
-                    }
-                    else{
+                        $data['message'] = "Blog post Successfully Updated";
+                    } else {
                         $data['response'] = FALSE;
-                        $data['message'] = "Error Updating Product";
+                        $data['message'] = "Error Updating blog post";
                     }
                 }
             }
         }
 
-        $data['product'] = $product;
+        $data['categories'] = $this->category->getAll('', array('is_delete' => 0), '', '', 'category_id');
+        $data['product'] = $singleProduct;
         $this->load->view('admin/product/editProduct', $data);
     }
 
@@ -339,7 +336,7 @@ class Admin extends MY_Controller
 
                 $this->load->library('upload', $config);
 
-                if (!$this->upload->do_upload('product_pictures')) {
+                if (!$this->upload->do_upload('post_pictures')) {
 
                     $data['response'] = FALSE;
                     $data['message'] = $this->upload->display_errors();
@@ -347,22 +344,21 @@ class Admin extends MY_Controller
 
                     $values = array(
                         'post_title' => $clean['post_title'],
-                        'product_model' => $clean['product_model'],
-                        'post_description' => $clean['post_description'],
-                        'product_pictures' => 'uploads/blog/' . $this->upload->data('file_name'),
                         'category_id' => $clean['category_id'],
-                        'date_added' => date("Y-m-d H:m:s"),
+                        'post_description' => $clean['post_description'],
+                        'post_pictures' => 'uploads/blog/'.$this->upload->data('file_name'),
+                        'date_edited' => date("Y-m-d H:m:s"),
 //                    'user_id' => $this->current_user->user_id,
                     );
 
-                    $success = $this->product->insert($values);
+                    $success = $blogpost->update($values, $blogpost_id);
 
                     if ($success) {
                         $data['response'] = TRUE;
-                        $data['message'] = "Product Information Successfully Added";
+                        $data['message'] = "Blog post Successfully Updated";
                     } else {
                         $data['response'] = FALSE;
-                        $data['message'] = "Error Adding Product Information Type";
+                        $data['message'] = "Error Updating blog post";
                     }
                 }
             }

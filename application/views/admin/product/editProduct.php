@@ -52,6 +52,17 @@
             </div>
 
             <div class="form-group">
+                    <label for="exampleInputEmail1">Product Category</label>
+                   <select class="form-control" name="category_id">
+                       <option value=""></option>
+                       <?php foreach ($categories as $category):?>
+                       <option value="<?php echo $category->category_id?>"><?php echo $category->category_name?></option>
+                       <?php endforeach;?>
+                   </select>
+                    <p><?php echo form_error('category_id')?></p>
+                </div>
+
+            <div class="form-group">
                 <label for="exampleInputPassword1">Product Description</label>
                 <textarea class="summernote" name="product_description"><?php echo $product->product_description?></textarea>
                 <p><?php echo form_error('product_description')?></p>
@@ -67,7 +78,7 @@
                 <input type="file" class="form-control" id="exampleInputEmail1" name="product_pictures">
             </div>
 
-            <button type="submit" class="btn btn-success col-md-offset-5">Add Product</button>
+            <button type="submit" class="btn btn-success col-md-offset-5">Edit Product</button>
         </form>
     </div>
 </div>
