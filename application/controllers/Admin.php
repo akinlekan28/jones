@@ -31,8 +31,9 @@ class Admin extends MY_Controller
             $values = array(
                 'category_name' => $clean['category_name'],
                 'category_description' => $clean['category_description'],
+                'category_slug' => slug($clean['category_name']),
                 'date_added' => date("Y-m-d H:m:s"),
-                'user_id' => $this->current_user->user_id,
+                // 'user_id' => $this->current_user->user_id,
             );
             $success = $this->category->insert($values);
             if($success)
@@ -62,8 +63,8 @@ class Admin extends MY_Controller
             $config['allowed_types'] = 'jpg|png|gif';
             $config['overwrite'] = TRUE;
             $config['max_size']  = 10000;
-            $config['max_width'] = 0;
-            $config['max_height'] = 0;
+            $config['max_width'] = 320;
+            $config['max_height'] = 200;
             $config['file_name'] = $clean['product_model'];
 
             $this->load->library('upload', $config);
@@ -83,6 +84,7 @@ class Admin extends MY_Controller
                     'product_pictures' => 'uploads/product/' . $this->upload->data('file_name'),
                     'category_id' => $clean['category_id'],
                     'date_added' => date("Y-m-d H:m:s"),
+                    'product_slug' => slug($clean['product_name']),
 //                    'user_id' => $this->current_user->user_id,
                 );
 
@@ -115,6 +117,7 @@ class Admin extends MY_Controller
             $values = array(
                 'category_name' => $clean['category_name'],
                 'category_description' => $clean['category_description'],
+                'category_slug' => slug($clean['category_name']),
             );
             $success = $this->category->update($values, $category_id);
             if($success)
@@ -187,8 +190,8 @@ class Admin extends MY_Controller
                 $config['allowed_types'] = 'jpg|png|gif';
                 $config['overwrite'] = TRUE;
                 $config['max_size'] = 10000;
-                $config['max_width'] = 0;
-                $config['max_height'] = 0;
+                $config['max_width'] = 320;
+                $config['max_height'] = 200;
                 $config['file_name'] = $clean['product_model'];
 
                 $this->load->library('upload', $config);
@@ -205,6 +208,7 @@ class Admin extends MY_Controller
                         'product_description' => $clean['product_description'],
                         'product_pictures' => 'uploads/product/' . $this->upload->data('file_name'),
                         'category_id' => $clean['category_id'],
+                        'product_slug' => slug($clean['product_name']),
                         'date_edited' => date("Y-m-d H:m:s"),
 //                    'user_id' => $this->current_user->user_id,
                     );
@@ -267,8 +271,8 @@ class Admin extends MY_Controller
             $config['allowed_types'] = '*';
             $config['overwrite'] = TRUE;
             $config['max_size']  = 10000;
-            $config['max_width'] = 0;
-            $config['max_height'] = 0;
+            $config['max_width'] = 320;
+            $config['max_height'] = 200;
             $config['file_name'] = $clean['post_title'];
 
             $this->load->library('upload', $config);
@@ -287,6 +291,7 @@ class Admin extends MY_Controller
                     'post_description' => $clean['post_description'],
                     'post_pictures' => 'uploads/blog/'.$this->upload->data('file_name'),
                     'date_added' => date("Y-m-d H:m:s"),
+                    'slug_title' => slug($clean['post_title']),
 //                    'user_id' => $this->current_user->user_id,
                 );
 
@@ -330,8 +335,8 @@ class Admin extends MY_Controller
                 $config['allowed_types'] = 'jpg|png|gif';
                 $config['overwrite'] = TRUE;
                 $config['max_size'] = 10000;
-                $config['max_width'] = 0;
-                $config['max_height'] = 0;
+                $config['max_width'] = 320;
+                $config['max_height'] = 200;
                 $config['file_name'] = $clean['post_title'];
 
                 $this->load->library('upload', $config);
@@ -348,6 +353,7 @@ class Admin extends MY_Controller
                         'post_description' => $clean['post_description'],
                         'post_pictures' => 'uploads/blog/'.$this->upload->data('file_name'),
                         'date_edited' => date("Y-m-d H:m:s"),
+                        'slug_title' => slug($clean['post_title']),
 //                    'user_id' => $this->current_user->user_id,
                     );
 

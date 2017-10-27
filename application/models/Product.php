@@ -20,6 +20,8 @@ class Product extends MY_Model
 
     public $category_id;
 
+    public $product_slug;
+
     public $date_added;
 
     public $date_edited;
@@ -68,6 +70,12 @@ class Product extends MY_Model
         'category_id' =>array(
             'type' => 'INT',
             'constraint' => 11,
+            'null' => FALSE,
+        ),
+
+        'product_slug' =>array(
+            'type' => 'VARCHAR',
+            'constraint'=> 300,
             'null' => FALSE,
         ),
 

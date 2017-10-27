@@ -15,7 +15,7 @@
     <!-- Viewport Meta Tag -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>
-        Editel | Integrated Systems
+        Edtel | Integrated Systems
     </title>
     <!-- Bootstrap -->
     <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/css/bootstrap.min.css">
@@ -80,7 +80,7 @@
                 <ul class="navbar-nav mr-auto w-100 justify-content-end">
 
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="<?php echo base_url()?>">Home <span class="sr-only">(current)</span></a>
                     </li>
 
                     <li class="nav-item dropdown">

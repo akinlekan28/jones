@@ -14,6 +14,8 @@ class Category extends MY_Model
 
     public $category_description;
 
+    public $category_slug;
+
     public $date_added;
 
     public $user_id;
@@ -40,6 +42,12 @@ class Category extends MY_Model
         ),
 
         'category_description' =>array(
+            'type' => 'VARCHAR',
+            'constraint'=> 300,
+            'null' => FALSE,
+        ),
+
+        'category_slug' =>array(
             'type' => 'VARCHAR',
             'constraint'=> 300,
             'null' => FALSE,
