@@ -29,7 +29,7 @@
                 </div>
             </div>
             <div class="carousel-item">
-                <img src="<?php echo base_url();?>assets/img/slider/bg-2.jpg" class="img-responsive" alt="">
+                <img src="<?php echo base_url();?>assets/img/slider/security.jpg" class="img-responsive" alt="">
                 <div class="carousel-caption">
                     <h2>
                         Security Enhanced Entry Systems
