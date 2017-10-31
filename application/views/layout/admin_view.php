@@ -48,7 +48,7 @@
 
 <script>
     $(document).ready(function () {
-        $('#btn-form-modal').click(function(e){
+        $('.btn-form-modal').click(function(e){
             e.preventDefault();
             // get the url to open
             var url = $(this).attr('href');

@@ -44,7 +44,7 @@ class MY_Controller extends CI_Controller{
         
         if(!$this->current_user || !$this->current_user->user_id)
         {
-            redirect('home');
+            redirect('auth');
         }
         // user is logged in 
         //$this->current_user_role = $this->current_user->role ;

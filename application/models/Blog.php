@@ -114,4 +114,23 @@ class Blog extends MY_Model
             }
         }
     }
+
+    public function getAuthor($user_id = NULL)
+    {
+        if ($user_id) {
+            $user = $this->users->getOne('', array('is_delete' => 0, 'user_id' => $user_id));
+            if ($user->user_id) {
+                return $user->firstname . " " . $user->lastname;
+            } else {
+                return NULL;
+            }
+        } else {
+            $user = $this->users->getOne('', array('is_delete' => 0, 'user_id' => $this->user_id));
+            if ($user->user_id) {
+                return $user->firstname . " " . $user->lastname;
+            } else {
+                return NULL;
+            }
+        }
+    }
 }

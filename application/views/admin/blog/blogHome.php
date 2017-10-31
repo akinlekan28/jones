@@ -13,7 +13,7 @@
             <div class="blog-item-wrapper wow fadeIn" data-wow-delay="0.3s">
               <div class="blog-item-img">
                 <a href="<?php echo site_url("home/singlepost/{$blogPost->slug_title}")?>">
-                  <img src="<?php echo base_url($blogPost->post_pictures)?>" alt="post-img" class="img-responsive">
+                  <img src="<?php echo base_url($blogPost->post_pictures)?>" alt="post-img" class="img-responsive" style="width:100%; height:200;">
                 </a>   
               </div>
               <div class="blog-item-text">
@@ -27,6 +27,7 @@
                 </div>
               </div>
             </div><!-- Blog Item Wrapper Ends-->
+            &nbsp;
           </div>
 <?php endforeach;?>
 

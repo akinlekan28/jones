@@ -75,7 +75,7 @@
                         <td><?php echo $sn ?></td>
                         <td><?php echo $category->category_name; ?></td>
                         <td><?php echo $category->category_description; ?></td>
-                        <td><a href="#" data="<?php echo $category->category_id; ?>" class="delete"><i class="fa fa-trash" style="color: #EB5E28;"></i></a> <a href="<?php echo site_url("admin/editProductCategory/{$category->category_id}")?>" id="btn-form-modal" data-toggle="tooltip" data-trigger="hover" data-placement="top" data-title="Edit" data-target="#default" ><i class="fa fa-edit text-success"></i></a> </td>
+                        <td><a href="#" data="<?php echo $category->category_id; ?>" class="delete"><i class="fa fa-trash" style="color: #EB5E28;"></i></a> <a href="<?php echo site_url("admin/editProductCategory/{$category->category_id}")?>" class="btn-form-modal" data-toggle="tooltip" data-trigger="hover" data-placement="top" data-title="Edit" data-target="#default" ><i class="fa fa-edit text-success"></i></a> </td>
                     </tr>
                     <?php $sn ++;
                 endforeach?>

@@ -1,3 +1,22 @@
+<script src="<?php echo base_url();?>assets/js/jquery-min.js"></script>
+<script src="<?php echo base_url();?>adminassets/js/notify.min.js"></script>
+
+<?php if(isset($response)):?>
+    <?php if($response == TRUE):?>
+        <script type="text/javascript">
+            $(document).ready(function(){
+                $.notify("Comment Successfully Submitted", "success");
+            });
+        </script>
+    <?php elseif($response == FALSE):?>
+        <script>
+            $(document).ready(function(){
+                $.notify("Error Submitting Comment", "error");
+            });
+        </script>
+    <?php endif?>
+<?php endif?>
+
 <section class="classic-blog-section section-padding">
       <div class="container">
         <div class="row">
@@ -18,7 +37,7 @@
                       <a href="#"><img class="img-circle img-responsive" src="assets/img/blog/avatar/avatar1.jpg" alt=""></a>
                     </div>
                     <div class="media-body">
-                      <span class="author-name"><b><?php echo $post->user_id?></b></span><br>
+                      <span class="author-name"><b><?php echo $post->getAuthor()?></b></span><br>
                       <span class="published-time"><i class="fa fa-calendar"></i><?php echo $post->date_added?></span>
                     </div>
                   </div>
@@ -67,45 +86,20 @@
             <div class="similar-post mt-30 clearfix">
               <h3 class="small-title mb-40 wow fadeIn" data-wow-delay="0.3s">Similar Post</h3>
               <div class="row">
+                  <?php foreach($similarPosts as $similarPost):?>
                 <div class="col-md-3 wow fadeIn" data-wow-delay="0.4s">
-                  <a href="#"><img src="assets/img/blog/home-items/img4.jpg" alt="" class="img-responsive"></a>
-                  <a href="#"><h2>Scetch Fundamental</h2></a>
+                  <a href="<?php echo site_url("home/singlepost/{$similarPost->slug_title}")?>"><img src="<?php echo base_url($similarPost->post_pictures)?>" alt="" class="img-responsive" style="width:100%; height:150;"></a>
+                  <a href="<?php echo site_url("home/singlepost/{$similarPost->slug_title}")?>"><h2><?php echo $similarPost->post_title?></h2></a>
                 </div>
+<?php endforeach; ?>
                 
               </div>
             </div>
-            
+
             <div class="comments-area clearfix mt-50 wow fadeInUp" data-wow-delay="0.3s">
               <h3 class="small-title"><i class="fa fa-comment"></i> Comments</h3>
               <ul class="media-left comment-list mt-30">
-<!--                <li class="media">-->
-<!--                  <div class="media-left">-->
-<!--                    <a href="#"><img class="img-responsive img-circle" src="assets/img/blog/comment_avatar/avatar1.jpg" alt=""></a>-->
-<!--                  </div>-->
-<!--                  <div class="media-body">-->
-<!--                    <div class="commentor-info">-->
-<!--                      <div class="comment-author">-->
-<!--                        <a href="#">Al Amin Khan</a>-->
-<!--                        <span class="published-time"><i class="fa fa-calendar"></i> 18 hrs ago</span>-->
-<!--                      </div>-->
-<!--                      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos fuga, et maiores, veniam ipsa quod soluta nam, deleniti assumenda magnam sint sapiente voluptatem commodi eos.</p>-->
-<!--                    </div>-->
-<!--                    <div class="media reply">-->
-<!--                      <div class="media-body">-->
-<!--                        <div class="commentor-info">-->
-<!--                          <div class="comment-author">-->
-<!--                            <a href="#">Saifuddin</a>-->
-<!--                            <span class="published-time"><i class="fa fa-calendar"></i> 18 hrs ago</span>-->
-<!--                          </div>-->
-<!--                          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos fuga, et maiores, veniam ipsa quod soluta nam, deleniti assumenda magnam sint sapiente voluptatem commodi eos.</p>-->
-<!--                        </div>-->
-<!--                      </div>-->
-<!--                      <div class="media-right">-->
-<!--                        <a href="#"><img class="img-responsive img-circle" src="assets/img/blog/comment_avatar/avatar2.jpg" alt=""></a>-->
-<!--                      </div>-->
-<!--                    </div>-->
-<!--                  </div>-->
-<!--                </li>-->
+
                 <li class="media">
                   <div class="media-left">
                     <a href="#"><img class="img-responsive img-circle" src="assets/img/blog/comment_avatar/avatar3.jpg" alt=""></a>
@@ -121,51 +115,42 @@
                     </div>
                   </div>
                 </li>
-<!--                <li class="media">-->
-<!--                  <div class="media-left">-->
-<!--                    <a href="#"><img class="img-responsive img-circle" src="assets/img/blog/comment_avatar/avatar4.jpg" alt=""></a>-->
-<!--                  </div>-->
-<!--                  <div class="media-body">-->
-<!--                    <div class="commentor-info">-->
-<!--                      <div class="comment-author">-->
-<!--                        <a href="#">Jon Doe</a>-->
-<!--                        <span class="published-time"><i class="fa fa-calendar"></i> 1 Day ago</span>-->
-<!--                      </div>-->
-<!--                      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos fuga, et maiores, veniam ipsa quod soluta nam, deleniti assumenda magnam sint sapiente voluptatem commodi eos.</p>-->
-<!--                      <a href="#">Reply</a>-->
-<!--                    </div>-->
-<!--                  </div>-->
-<!--                </li>-->
+
               </ul>
               <div class="new-comment mt-50">
                 <h3 class="small-title">Post new Comment</h3>
-                <form class="mt-30">
+                <form class="mt-30" method="post">
                   <div class="row">
                     <div class="col-md-4 ">
                       <div class="form-group">
-                        <label class="sr-only" for="username">Name</label>
-                        <input type="text" placeholder="Full Name" id="username" required="" class="form-control">
+                        <label class="sr-only" for="username">Name <span class="text-danger">*</span></label>
+                        <input type="text" placeholder="Full Name" id="username" required="" class="form-control" name="name">
+                          <p><?php echo form_error('name')?></p>
                       </div>
                     </div><!-- /.col-md-4  -->
                     <div class="col-md-8 ">
                       <div class="form-group">
                         <label class="sr-only" for="useremail">Email</label>
-                        <input type="email" placeholder="Email Address" id="useremail" required="" class="form-control">
+                        <input type="email" placeholder="Email Address" id="useremail" class="form-control" name="email">
                       </div>
                     </div><!-- /.col-md-4  -->
-<!--                    <div class="col-md-4">-->
-<!--                      <div class="form-group">-->
-<!--                        <label class="sr-only" for="userurl">Website</label>-->
-<!--                        <input type="text" placeholder="Your Website" id="userurl" required="" class="form-control">-->
-<!--                      </div>-->
-<!--                    </div>-->
+
                   </div><!-- /.col-md-4  -->
                   <div class="form-group">
-                    <label class="sr-only" for="usermessage">Message</label>
-                    <textarea placeholder="Type here message" id="usermessage" rows="7" required="" class="form-control"></textarea>
+                    <label class="sr-only" for="usermessage">Message <span class="text-danger">*</span></label>
+                    <textarea placeholder="Type here message" id="usermessage" rows="7" required="" class="form-control" name="message"></textarea>
+                      <p><?php echo form_error('message')?></p>
                   </div> 
-                  <button class="btn btn-common" type="submit"><i class="fa fa-comment"></i> Post Comment</button>      
+                  <button class="btn btn-common" type="submit" name="submit"><i class="fa fa-comment"></i> Post Comment</button>
               </form>
+<!--                  <p class="text-center">--><?php //if(isset($response)):?>
+<!--                          --><?php //if($response == TRUE):?>
+<!--                              --><?php //echo "<p class='text-success'>" . $message . "<p>";?>
+<!--                          --><?php //endif?>
+<!--                          --><?php //if($response == FALSE):?>
+<!--                              --><?php //echo "<p class='text-danger'>" . $message .  "<p>". '<br><br>';?>
+<!--                          --><?php //endif?>
+<!--                      --><?php //endif?><!-- </p>-->
               </div>
             </div>
           </div>
@@ -181,11 +166,7 @@
                   <button type="submit"><i class="fa fa-search"></i></button>
                 </form>
               </aside>
-              <!-- Text Widgets -->
-              <aside class="widget text-widgets wow fadeInUp" data-wow-delay="0.3s">
-                <h2 class="widget-title">Text Widget</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur dolorem fuga ad corrupti, ullam, eos natus, repellat officiis sit labore a aspernatur quisquam. In, unde.</p>
-              </aside>
+           
               <!-- Recent Post Widgets -->
               <aside class="widget popular-post wow fadeInUp" data-wow-delay="0.3s">
                 <h2 class="widget-title">Popular Post</h2>

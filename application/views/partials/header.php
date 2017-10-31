@@ -68,7 +68,7 @@
         <div class="container">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
-                <a class="navbar-brand" href="index-2.html">
+                <a class="navbar-brand" href="<?php echo base_url()?>">
 <!--                    <img src="assets/img/logo.png" alt="">-->
                    <div style="font-size: 26px;">Edtel Systems</div>
                 </a>
@@ -98,10 +98,9 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Products</a>
                         <div class="dropdown-menu">
-                            <a class="dropdown-item" href="portfolio-col-2.html">Portfolio 2 Columns</a>
-                            <a class="dropdown-item" href="portfolio-col-3.html">Portfolio 3 Columns</a>
-                            <a class="dropdown-item" href="portfolio-col-4.html">Portfolio 4 Columns</a>
-                            <a class="dropdown-item" href="portfolio-item.html">Portfolio Single</a>
+                            <?php foreach($categories as $category):?>
+                            <a class="dropdown-item" href="portfolio-col-2.html"><?php echo $category->category_name?></a>
+    <?php endforeach;?>
                         </div>
                     </li>
 
@@ -118,7 +117,7 @@
             <!-- Mobile Menu Start -->
             <ul class="wpb-mobile-menu">
                 <li>
-                    <a href="index-2.html">Home</a>
+                    <a href="<?php echo base_url()?>">Home</a>
                 </li>
 
                 <li>
@@ -132,9 +131,16 @@
                 <li>
                     <a href="<?php echo base_url();?>#showcase">Showcase</a>
                 </li>
+<!-- 
+                <li>
+                    <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="">Product</a>
+                    <div class="dropdown-menu">
+                            <a class="dropdown-item" href="portfolio-col-2.html">Portfolio 2 Columns</a>
+                        </div>
+                </li> -->
 
                 <li>
-                    <a href="#">Blog</a>
+                    <a href="<?php echo site_url('home/blog')?>">Blog</a>
                 </li>
 
                 <li>

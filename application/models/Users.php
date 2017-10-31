@@ -14,8 +14,6 @@ class Users extends MY_Model
 
     public $lastname;
 
-    public $department_id;
-
     public $email;
 
     public $password;
@@ -23,10 +21,6 @@ class Users extends MY_Model
     public $password_salt;
 
     public $privilege;
-
-    public $question_id;
-
-    public $answer;
 
     public $date_registered;
 
@@ -87,18 +81,6 @@ class Users extends MY_Model
             'null' => FALSE,
         ),
 
-        'question_id' =>array(
-            'type' => 'INT',
-            'constraint'=> 11,
-            'null' => FALSE,
-        ),
-
-        'answer' =>array(
-            'type' => 'VARCHAR',
-            'constraint'=> 300,
-            'null' => FALSE,
-        ),
-
         'date_registered'=> array(
             'type' => 'DATE',
             'null' => FALSE,
@@ -110,25 +92,6 @@ class Users extends MY_Model
             'default' => 0,
         )
     );
-
-    public function getDepartment($department_id = NULL)
-    {
-        if ($department_id) {
-            $department = $this->departments->getOne('', array('is_delete' => 0, 'department_id' => $department_id));
-            if ($department->department_id) {
-                return $department->department_name;
-            } else {
-                return NULL;
-            }
-        } else {
-            $department = $this->departments->getOne('', array('is_delete' => 0, 'department_id' => $this->department_id));
-            if ($department->department_id) {
-                return $department->department_name;
-            } else {
-                return NULL;
-            }
-        }
-    }
 
     public function is($privilege ='')
     {

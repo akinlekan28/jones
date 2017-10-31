@@ -9,7 +9,7 @@
 /**
  * Description of My_Model
  *
- * @author Crystalhills
+ * @author Akintola Olalekan
  */
 
 class MY_Model extends CI_Model{

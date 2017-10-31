@@ -63,7 +63,7 @@
                         <td><?php echo $post->post_title; ?></td>
                         <td><?php echo $post->getCategory(); ?></td>
                         <td><?php echo $post->date_added; ?></td>
-                        <td><a href="#" data="<?php echo $post->post_id; ?>" class="delete"><i class="fa fa-trash" style="color: #EB5E28;"></i></a> <a href="<?php echo site_url("admin/editPost/{$post->post_id}")?>" id="btn-form-modal" data-toggle="tooltip" data-trigger="hover" data-placement="top" data-title="Edit" data-target="#default" ><i class="fa fa-edit text-success"></i></a> </td>
+                        <td><a href="#" data="<?php echo $post->post_id; ?>" class="delete"><i class="fa fa-trash" style="color: #EB5E28;"></i></a> <a href="<?php echo site_url("admin/editPost/{$post->post_id}")?>" class="btn-form-modal" data-toggle="tooltip" data-trigger="hover" data-placement="top" data-title="Edit" data-target="#default" ><i class="fa fa-edit text-success"></i></a> </td>
                     </tr>
                     <?php $sn ++;
                 endforeach?>

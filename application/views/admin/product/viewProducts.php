@@ -64,7 +64,7 @@
                         <td><?php echo $product->product_model; ?></td>
                         <td><?php echo $product->getCategory(); ?></td>
                         <td><?php echo $product->date_added; ?></td>
-                        <td><a href="#" data="<?php echo $product->product_id; ?>" class="delete"><i class="fa fa-trash" style="color: #EB5E28;"></i></a> <a href="<?php echo site_url("admin/editProduct/{$product->product_id}")?>" id="btn-form-modal" data-toggle="tooltip" data-trigger="hover" data-placement="top" data-title="Edit" data-target="#default" ><i class="fa fa-edit text-success"></i></a> </td>
+                        <td><a href="#" data="<?php echo $product->product_id; ?>" class="delete"><i class="fa fa-trash" style="color: #EB5E28;"></i></a> <a href="<?php echo site_url("admin/editProduct/{$product->product_id}")?>" class="btn-form-modal" data-toggle="tooltip" data-trigger="hover" data-placement="top" data-title="Edit" data-target="#default" ><i class="fa fa-edit text-success"></i></a> </td>
                     </tr>
                     <?php $sn ++;
                 endforeach?>

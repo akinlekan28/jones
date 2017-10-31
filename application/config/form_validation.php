@@ -8,6 +8,46 @@
 
 $config = array(
 
+    'signup' => array(
+        array(
+            'field' => 'email',
+            'label' => 'Email',
+            'rules' => 'required'
+         ),
+
+        array(
+            'field' => 'password',
+            'label' => 'Password',
+            'rules' => 'required'
+         ),
+         
+         array(
+            'field' => 'firstname',
+            'label' => 'First Name',
+            'rules' => 'required'
+         ),
+
+         array(
+            'field' => 'lastname',
+            'label' => 'Last Name',
+            'rules' => 'required'
+         ),
+    ),
+
+    'login' => array(
+        array(
+            'field' => 'email',
+            'label' => 'Email',
+            'rules' => 'required'
+         ),
+
+        array(
+            'field' => 'password',
+            'label' => 'Password',
+            'rules' => 'required'
+         ),
+    ),
+
     'addcat' => array(
         array(
             'field' => 'category_name',

@@ -184,6 +184,8 @@
 <!-- All JS plugin Triggers -->
 <script src="<?php echo base_url();?>assets/js/main.js"></script>
 
+<script src="<?php echo base_url();?>adminassets/js/notify.min.js"></script>
+
 </body>
 
 </html>
