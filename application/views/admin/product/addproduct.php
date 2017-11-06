@@ -72,6 +72,12 @@
                 </div>
 
                 <div class="form-group">
+                    <label for="exampleInputEmail1">Product Weight</label>
+                    <input type="number" class="form-control" id="exampleInputEmail1" name="product_weight" placeholder="Product Weight">
+                    <p><?php echo form_error('product_weight')?></p>
+                </div>
+
+                <div class="form-group">
                     <label for="exampleInputPassword1">Product Description</label>
                     <textarea class="summernote" name="product_description"></textarea>
                     <p><?php echo form_error('product_description')?></p>
@@ -79,7 +85,7 @@
 
                 <div class="form-group">
                     <label for="exampleInputEmail1">Pictures</label>
-                    <input type="file" class="form-control" id="exampleInputEmail1" multiple="multiple" name="product_pictures[]">
+                    <input type="file" class="form-control" id="exampleInputEmail1" name="product_pictures">
                 </div>
 
                 <button type="submit" class="btn btn-success col-md-offset-5">Add Product</button>

@@ -99,7 +99,7 @@
                         <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Products</a>
                         <div class="dropdown-menu">
                             <?php foreach($categories as $category):?>
-                            <a class="dropdown-item" href="portfolio-col-2.html"><?php echo $category->category_name?></a>
+                            <a class="dropdown-item" href="<?php echo site_url("home/product_category/{$category->category_slug}")?>"><?php echo $category->category_name?></a>
     <?php endforeach;?>
                         </div>
                     </li>
@@ -109,7 +109,7 @@
                     </li>
 
                     <li class="nav-item dropdown">
-                        <a class="nav-link" href="#" aria-haspopup="true" aria-expanded="false">Contact Us</a>
+                        <a class="nav-link" href="<?php echo site_url('home/contactus')?>" aria-haspopup="true" aria-expanded="false">Contact Us</a>
                     </li>
                 </ul>
             </div>

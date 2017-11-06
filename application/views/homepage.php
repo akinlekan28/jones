@@ -222,7 +222,7 @@
                             Electric Perimeter Fence System 96%
                         </p>
                         <div class="progress">
-                            <div class="progress-bar" role="progressbar"  data-percentage="96">
+                            <div class="progress-bar animated" role="progressbar"  data-percentage="96">
                     <span class="sr-only">
                     96% Complete
                     </span>
@@ -234,7 +234,7 @@
                             Access Control System 98%
                         </p>
                         <div class="progress">
-                            <div class="progress-bar" role="progressbar"  data-percentage="98">
+                            <div class="progress-bar animated" role="progressbar"  data-percentage="98">
                     <span class="sr-only">
                     98% Complete
                     </span>
@@ -246,7 +246,7 @@
                             Biometric Time and Attendance Management Solution 100%
                         </p>
                         <div class="progress">
-                            <div class="progress-bar" role="progressbar"  data-percentage="100">
+                            <div class="progress-bar animated" role="progressbar"  data-percentage="100">
                     <span class="sr-only">
                     100% Complete
                     </span>
@@ -258,7 +258,7 @@
                             CCTV Surveillance Solutions 100%
                         </p>
                         <div class="progress">
-                            <div class="progress-bar" role="progressbar"  data-percentage="100">
+                            <div class="progress-bar animated" role="progressbar"  data-percentage="100">
                     <span class="sr-only">
                     100% Complete
                     </span>
@@ -270,7 +270,7 @@
                             Fire and Smoke Detector Alarm System 97%
                         </p>
                         <div class="progress">
-                            <div class="progress-bar" role="progressbar"  data-percentage="97">
+                            <div class="progress-bar animated" role="progressbar"  data-percentage="97">
                     <span class="sr-only">
                     97% Complete
                     </span>
@@ -287,7 +287,7 @@
                             Fire and Smoke Detector Alarm System 95%
                         </p>
                         <div class="progress">
-                            <div class="progress-bar" role="progressbar"  data-percentage="95">
+                            <div class="progress-bar animated" role="progressbar"  data-percentage="95">
                     <span class="sr-only">
                     95% Complete
                     </span>
@@ -299,7 +299,7 @@
                             PABX and Intercom Network System 100%
                         </p>
                         <div class="progress">
-                            <div class="progress-bar" role="progressbar"  data-percentage="100">
+                            <div class="progress-bar animated" role="progressbar"  data-percentage="100">
                     <span class="sr-only">
                     100% Complete
                     </span>
@@ -311,7 +311,7 @@
                             Multimedia Solution 100%
                         </p>
                         <div class="progress">
-                            <div class="progress-bar" role="progressbar"  data-percentage="100">
+                            <div class="progress-bar animated" role="progressbar"  data-percentage="100">
                     <span class="sr-only">
                     100% Complete
                     </span>
@@ -323,7 +323,7 @@
                             Power System  98%
                         </p>
                         <div class="progress">
-                            <div class="progress-bar" role="progressbar"  data-percentage="98">
+                            <div class="progress-bar animated" role="progressbar"  data-percentage="98">
                     <span class="sr-only">
                     98% Complete
                     </span>
@@ -335,7 +335,7 @@
                             GPS Car Tracking System   97%
                         </p>
                         <div class="progress">
-                            <div class="progress-bar" role="progressbar"  data-percentage="97">
+                            <div class="progress-bar animated" role="progressbar"  data-percentage="97">
                     <span class="sr-only">
                     97% Complete
                     </span>
@@ -352,7 +352,7 @@
                             Networking and Communication 100%
                         </p>
                         <div class="progress">
-                            <div class="progress-bar" role="progressbar"  data-percentage="100">
+                            <div class="progress-bar animated" role="progressbar"  data-percentage="100">
                     <span class="sr-only">
                     100% Complete
                     </span>
@@ -365,6 +365,22 @@
             <!-- Other Service Image Ends-->
         </div>
     </div><!-- Container Ends -->
+</section>
+
+<section class="cta-section section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="cta-area">
+                    <div class="cta-content text-center">
+                        <h2 class="wow bounceInRight" data-wow-delay="0.3s">Impressed with the services we offer?</h2>
+                        <p>Then you can hire us for your next project!</p>
+                        <a href="<?php echo site_url('home/contactus')?>" class="btn btn-common wow bounceInUp" data-wow-delay="0.6s"><i class="fa fa-codepen"></i> Hire Us Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </section>
 
 <section id="portfolios" class="section">

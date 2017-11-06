@@ -50,7 +50,7 @@
             <div class="form-group">
                 <label for="exampleInputEmail1">Featured Product Category</label>
                 <select class="form-control" name="category_id">
-                    <option value=""></option>
+                    <option value="<?php echo $post->category_id?>"><?php echo $post->getCategory()?></option>
                     <?php foreach ($categories as $category):?>
                         <option value="<?php echo $category->category_id?>"><?php echo $category->category_name?></option>
                     <?php endforeach;?>

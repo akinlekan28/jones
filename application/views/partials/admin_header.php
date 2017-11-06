@@ -54,7 +54,7 @@
 <body>
 <div id="wrapper">
  
-    <nav class="navbar-default navbar-static-top" role="navigation">
+    <div class="navbar-default navbar-static-top" role="navigation">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                 <span class="sr-only">Toggle navigation</span>
@@ -65,9 +65,9 @@
             <h1 style="background-color: #ffffff!important;"> <a class="navbar-brand" href="<?php echo site_url('admin/index')?>">Edtel CMS</a></h1>
         </div>
         <div class=" border-bottom">
-            <div class="full-left">
-                <div class="clearfix"> </div>
-            </div>
+<!--            <div class="full-left">-->
+<!--                <div class="clearfix"> </div>-->
+<!--            </div>-->
             <div class="clearfix">
 
             </div>
@@ -81,7 +81,7 @@
                         </li>
 
                         <li>
-                            <a href="" class=" hvr-bounce-to-right"><i class="fa fa-shopping-cart nav_icon"></i> <span class="nav-label">Products</span><span class="fa arrow"></span></a>
+                            <a href="#" class=" hvr-bounce-to-right"><i class="fa fa-shopping-cart nav_icon"></i> <span class="nav-label">Products</span><span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li><a href="<?php echo site_url('admin/addProductCategory')?>" class=" hvr-bounce-to-right"> <i class="fa fa-pencil-square-o nav_icon"></i>Add Product Category</a></li>
 
@@ -93,24 +93,29 @@
                         </li>
 
                         <li>
-                            <a href="" class=" hvr-bounce-to-right"><i class="fa fa-newspaper-o nav_icon"></i> <span class="nav-label">Blog</span><span class="fa arrow"></span></a>
+                            <a href="#" class=" hvr-bounce-to-right"><i class="fa fa-newspaper-o nav_icon"></i> <span class="nav-label">Blog</span><span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li><a href="<?php echo site_url('admin/createPost')?>" class=" hvr-bounce-to-right"> <i class="fa fa-bullhorn nav_icon"></i>Create Post</a></li>
 
                                 <li><a href="<?php echo site_url('admin/allPost')?>" class=" hvr-bounce-to-right"><i class="fa fa-eye nav_icon"></i>View Posts</a></li>
 
-                                <li><a href="<?php echo site_url('admin/allProducts')?>" class=" hvr-bounce-to-right"><i class="fa fa-book nav_icon"></i>Comments</a></li>
+                                <li><a href="<?php echo site_url('admin/viewcomments')?>" class=" hvr-bounce-to-right"><i class="fa fa-book nav_icon"></i>Comments</a></li>
 
                             </ul>
                         </li>
 
                         <li>
-                            <a href="#" class=" hvr-bounce-to-right"><i class="fa fa-user nav_icon"></i> <span class="nav-label">Access Control</span></a>
+                            <a href="<?php echo site_url('admin/access')?>" class=" hvr-bounce-to-right"><i class="fa fa-user nav_icon"></i> <span class="nav-label">Access Control</span></a>
+                        </li>
+
+                        
+                        <li>
+                            <a href="<?php echo site_url('auth/signout')?>" class=" hvr-bounce-to-right"><i class="fa fa-power-off nav_icon"></i> <span class="nav-label">Sign Out</span></a>
                         </li>
 
                     </ul>
                 </div>
             </div>
-    </nav>
+    </div>
     <div id="page-wrapper" class="gray-bg dashbard-1">
         <div class="content-main">

@@ -14,7 +14,8 @@ class Admin extends MY_Controller
           'category',
             'product',
             'blog',
-            'users'
+            'users',
+            'comment'
         ));
         $this->_secure();
     }
@@ -25,6 +26,7 @@ class Admin extends MY_Controller
         $data['categories'] = $this->category->count(array('is_delete' => 0));
         $data['posts'] = $this->blog->count(array('is_delete' => 0));
         $data['users'] = $this->users->getAll('', array('is_delete' => 0));
+        $data['comments'] = $this->comment->count('', array('is_delete' => 0));
         $this->adminview->_output(['admin/dashboard'], $data);
     }
 
@@ -97,7 +99,7 @@ class Admin extends MY_Controller
             $config['upload_path'] = './uploads/product';
             $config['allowed_types'] = 'jpg|png|gif';
             $config['overwrite'] = TRUE;
-            $config['max_size']  = 10000;
+            $config['max_size']  = 20000;
             $config['max_width'] = 0;
             $config['max_height'] = 0;
             $config['file_name'] = $clean['product_model'];
@@ -117,6 +119,7 @@ class Admin extends MY_Controller
                     'product_model' => $clean['product_model'],
                     'product_description' => $clean['product_description'],
                     'product_pictures' => 'uploads/product/' . $this->upload->data('file_name'),
+                    'product_weight' => $clean['product_weight'],
                     'category_id' => $clean['category_id'],
                     'date_added' => date("Y-m-d H:m:s"),
                     'product_slug' => slug($clean['product_name']),
@@ -216,6 +219,7 @@ class Admin extends MY_Controller
             return;
         }
         else {
+            $singleProductCategory = $singleProduct->category_id;
 
             if ($this->input->post() && $this->form_validation->run('product')) {
                 $post = $this->input->post();
@@ -242,6 +246,7 @@ class Admin extends MY_Controller
                         'product_model' => $clean['product_model'],
                         'product_description' => $clean['product_description'],
                         'product_pictures' => 'uploads/product/' . $this->upload->data('file_name'),
+                        'product_weight' => $clean['product_weight'],
                         'category_id' => $clean['category_id'],
                         'product_slug' => slug($clean['product_name']),
                         'date_edited' => date("Y-m-d H:m:s"),
@@ -261,7 +266,7 @@ class Admin extends MY_Controller
             }
         }
 
-        $data['categories'] = $this->category->getAll('', array('is_delete' => 0), '', '', 'category_id');
+        $data['categories'] = $this->category->getAll('', array('is_delete' => 0, 'category_id !=' => $singleProductCategory), '', '', 'category_id');
         $data['product'] = $singleProduct;
         $this->load->view('admin/product/editProduct', $data);
     }
@@ -327,7 +332,7 @@ class Admin extends MY_Controller
                     'post_pictures' => 'uploads/blog/'.$this->upload->data('file_name'),
                     'date_added' => date("Y-m-d H:m:s"),
                     'slug_title' => slug($clean['post_title']),
-//                    'user_id' => $this->current_user->user_id,
+                   'user_id' => $this->current_user->user_id,
                 );
 
                 $success = $this->blog->insert($value);
@@ -361,6 +366,7 @@ class Admin extends MY_Controller
             return;
         }
         else {
+            $blogpostCategoryId = $blogpost->category_id;
 
             if ($this->input->post() && $this->form_validation->run('blogpost')) {
                 $post = $this->input->post();
@@ -369,7 +375,7 @@ class Admin extends MY_Controller
                 $config['upload_path'] = './uploads/blog';
                 $config['allowed_types'] = 'jpg|png|gif';
                 $config['overwrite'] = TRUE;
-                $config['max_size'] = 10000;
+                $config['max_size'] = 20000;
                 $config['max_width'] = 0;
                 $config['max_height'] = 0;
                 $config['file_name'] = $clean['post_title'];
@@ -389,7 +395,7 @@ class Admin extends MY_Controller
                         'post_pictures' => 'uploads/blog/'.$this->upload->data('file_name'),
                         'date_edited' => date("Y-m-d H:m:s"),
                         'slug_title' => slug($clean['post_title']),
-//                    'user_id' => $this->current_user->user_id,
+                        'user_id' => $this->current_user->user_id,
                     );
 
                     $success = $blogpost->update($values, $blogpost_id);
@@ -405,7 +411,7 @@ class Admin extends MY_Controller
             }
         }
 
-        $data['categories'] = $this->category->getAll('', array('is_delete' => 0), '', '', 'category_id');
+        $data['categories'] = $this->category->getAll('', array('is_delete' => 0, 'category_id !=' => $blogpostCategoryId), '', '', 'category_id');
         $data['post'] = $blogpost;
         $this->load->view('admin/blog/editPost', $data);
     }
@@ -443,4 +449,80 @@ class Admin extends MY_Controller
             }
         }
     }
+
+    public function viewcomments()
+    {
+        
+        $data['comments'] = $this->comment->getAll('', array('is_delete' => 0));
+        $this->adminview->_output(['admin/blog/comments'], $data);
+    }
+
+    public function deleteComment($comment_id)
+    {
+        $comment = $this->comment->getOne('', array('comment_id' => $comment_id, 'is_delete' => 0));
+
+        if(!$comment->comment_id)
+        {
+            echo json_encode(0);
+        }
+        elseif($comment->comment_id)
+        {
+            $value = array(
+                'is_delete' => 1
+            );
+
+            $success = $comment->update($value , $comment_id);
+
+            if($success)
+            {
+                echo json_encode(1);
+            }
+            else
+            {
+                echo json_encode(0);
+
+            }
+        }
+    }
+
+    public function access()
+    {
+        if(!$this->current_user->is(array('Admin')))
+        {
+            $data['title'] = "Access Denied";
+            $data['message'] = 'You do not have permission to visit this page!';
+
+            $this->load->view('errors/404' , $data);
+
+            return;
+        }
+
+        if ($this->input->post() && $this->form_validation->run('access'))
+        {
+            $post = $this->input->post();
+            $clean = $this->security->xss_clean($post);
+            $user = $clean['user_id'];
+
+            $value = array(
+                'privilege' => $clean['privilege']
+            );
+
+            if($this->current_user->privilege == "Admin")
+            {
+                $success = $this->users->update($value, $user);
+
+                if($success) {
+                    $data['response'] = TRUE;
+                    $data['message'] = "User Access level updated Successfully";
+                }else {
+                    $data['response'] = FALSE;
+                    $data['message'] = "Error Updating User Access Level";
+                }
+            }
+
+        }
+        $data['users'] = $this->users->getAll('', array('is_delete' => 0, 'user_id !=' => $this->current_user->user_id));
+        $this->adminview->_output(['admin/access/access'], $data);
+    }
+
 }

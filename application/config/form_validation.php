@@ -103,6 +103,20 @@ $config = array(
 
     ),
 
+    'access' => array(
+        array(
+            'field' => 'user_id',
+            'label' => 'Name',
+            'rules' => 'required'
+        ),
+
+        array(
+            'field' => 'privilege',
+            'label' => 'Access Level',
+            'rules' => 'required'
+        ),
+
+    ),
 
 );
 

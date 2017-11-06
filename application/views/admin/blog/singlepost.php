@@ -33,9 +33,9 @@
                 </div>
                 <div class="author-posted">
                   <div class="media">
-                    <div class="media-left">
+                    <!-- <div class="media-left">
                       <a href="#"><img class="img-circle img-responsive" src="assets/img/blog/avatar/avatar1.jpg" alt=""></a>
-                    </div>
+                    </div> -->
                     <div class="media-body">
                       <span class="author-name"><b><?php echo $post->getAuthor()?></b></span><br>
                       <span class="published-time"><i class="fa fa-calendar"></i><?php echo $post->date_added?></span>
@@ -57,7 +57,7 @@
                 </div>
                 <div class="blog-post clearfix">
 
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum facere ipsam tempora adipisci! Eius obcaecati tempora sed quibusdam, incidunt iusto veniam id non numquam debitis facilis, odio deleniti atque accusamus voluptates dolorem a nemo sapiente recusandae. Earum maxime sint quisquam placeat harum suscipit doloremque, deserunt.</p>
+                  <p><?php echo $post->post_description?></p>
                 </div>
               </section>
             </article>
@@ -73,48 +73,35 @@
                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis cumque, quo omnis rem eum ipsam qui. Tempore perspiciatis unde architecto quia, enim consectetur accusamus quasi omnis voluptatibus aliquid rem mollitia incidunt quibusdam eum, sit magnam, repellendus minima nihil iusto vitae ratione dicta, iste. Vitae, architecto.</p>
                   </div>
                 </div>
-                <!-- <div class="author-footer text-sm-center">
-                  <a class="wow bounceIn" data-wow-delay="0.4s" href="#"><i class="fa fa-facebook icon-box icon-sm"></i></a>
-                  <a class="wow bounceIn" data-wow-delay="0.5s" href="#"><i class="fa fa-twitter icon-box icon-sm"></i></a>
-                  <a class="wow bounceIn" data-wow-delay="0.6s" href="#"><i class="fa fa-google-plus icon-box icon-sm"></i></a>
-                  <a class="wow bounceIn" data-wow-delay="0.7s" href="#"><i class="fa fa-github icon-box icon-sm"></i></a>
-                  <a class="wow bounceIn" data-wow-delay="0.8s" href="#"><i class="fa fa-dribbble icon-box icon-sm"></i></a>
-                  <a class="wow bounceIn" data-wow-delay="0.9s" href="#"><i class="fa fa-behance icon-box icon-sm"></i></a>
-                </div> -->
             </section>
-
             <div class="similar-post mt-30 clearfix">
               <h3 class="small-title mb-40 wow fadeIn" data-wow-delay="0.3s">Similar Post</h3>
+              
               <div class="row">
-                  <?php foreach($similarPosts as $similarPost):?>
+              <?php foreach($similarPosts as $similarPost):?>
                 <div class="col-md-3 wow fadeIn" data-wow-delay="0.4s">
-                  <a href="<?php echo site_url("home/singlepost/{$similarPost->slug_title}")?>"><img src="<?php echo base_url($similarPost->post_pictures)?>" alt="" class="img-responsive" style="width:100%; height:150;"></a>
-                  <a href="<?php echo site_url("home/singlepost/{$similarPost->slug_title}")?>"><h2><?php echo $similarPost->post_title?></h2></a>
-                </div>
-<?php endforeach; ?>
-                
+                  <a href="<?php echo site_url("home/blog_post/{$similarPost->slug_title}")?>"><img src="<?php echo base_url($similarPost->post_pictures)?>" alt="" class="img-responsive" style="width:100%; height:150;"></a>
+                  <a href="<?php echo site_url("home/blog_post/{$similarPost->slug_title}")?>"><h2><?php echo $similarPost->post_title?></h2></a>
+                </div>    
+                 <?php endforeach; ?>            
               </div>
             </div>
-
             <div class="comments-area clearfix mt-50 wow fadeInUp" data-wow-delay="0.3s">
               <h3 class="small-title"><i class="fa fa-comment"></i> Comments</h3>
+              <?php foreach ($comments as $comment):?>
               <ul class="media-left comment-list mt-30">
-
                 <li class="media">
-                  <div class="media-left">
-                    <a href="#"><img class="img-responsive img-circle" src="assets/img/blog/comment_avatar/avatar3.jpg" alt=""></a>
-                  </div>
-                  <div class="media-body">
+                  <div class="media-body media-reply">
                     <div class="commentor-info">
                       <div class="comment-author">
-                        <a href="#">Shovon Ali</a>
-                        <span class="published-time"><i class="fa fa-calendar"></i> 5 hrs ago</span>
+                        <a href="#"><?php echo $comment->name?></a>
+                        <span class="published-time"><i class="fa fa-calendar"></i><?php echo $comment->date_added?></span>
                       </div>
-                      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos fuga, et maiores, veniam ipsa quod soluta nam, deleniti assumenda magnam sint sapiente voluptatem commodi eos.</p>
-                      <a href="#">Reply</a>
+                      <p><?php echo $comment->message?></p>
                     </div>
                   </div>
                 </li>
+          <?php endforeach;?>
 
               </ul>
               <div class="new-comment mt-50">
@@ -143,14 +130,6 @@
                   </div> 
                   <button class="btn btn-common" type="submit" name="submit"><i class="fa fa-comment"></i> Post Comment</button>
               </form>
-<!--                  <p class="text-center">--><?php //if(isset($response)):?>
-<!--                          --><?php //if($response == TRUE):?>
-<!--                              --><?php //echo "<p class='text-success'>" . $message . "<p>";?>
-<!--                          --><?php //endif?>
-<!--                          --><?php //if($response == FALSE):?>
-<!--                              --><?php //echo "<p class='text-danger'>" . $message .  "<p>". '<br><br>';?>
-<!--                          --><?php //endif?>
-<!--                      --><?php //endif?><!-- </p>-->
               </div>
             </div>
           </div>
@@ -171,57 +150,27 @@
               <aside class="widget popular-post wow fadeInUp" data-wow-delay="0.3s">
                 <h2 class="widget-title">Popular Post</h2>
                 <ul>
+                <?php foreach ($popularPosts as $popularPost):?>
                   <li>
                     <div class="media">
                       <div class="media-left">
-                        <a href="#"><img class="img-responsive" src="assets/img/blog/avatar/avatar1.jpg" alt=""></a>
+                        <a href="<?php echo site_url("home/blog_post/{$popularPost->slug_title}")?>"><img class="img-responsive popular-thumb" src="<?php echo base_url($popularPost->post_pictures)?>" alt=""></a>
                       </div>
                       <div class="media-body">
-                        <h4><a href="#">Principles of UX Design</a></h4>
-                        <span class="published-time"><i class="fa fa-calendar"></i> 18 hrs ago</span>
+                        <h4><a href="<?php echo site_url("home/blog_post/{$popularPost->slug_title}")?>"><?php echo $popularPost->post_title?></a></h4>
+                        <span class="published-time"><i class="fa fa-calendar"></i> <?php echo $popularPost->date_added?></span>
                       </div>
                     </div>
                   </li>
-                  <li>
-                    <div class="media">
-                      <div class="media-left">
-                        <a href="#"><img class="img-responsive" src="assets/img/blog/avatar/avatar2.jpg" alt=""></a>
-                      </div>
-                      <div class="media-body">
-                        <h4><a href="#">The unknown mystery of Momy</a></h4>
-                        <span class="published-time"><i class="fa fa-calendar"></i> 5 Days ago</span>
-                      </div>
-                    </div>
-                  </li>
-                  <li>
-                    <div class="media">
-                      <div class="media-left">
-                        <a href="#"><img class="img-responsive" src="assets/img/blog/avatar/avatar3.jpg" alt=""></a>
-                      </div>
-                      <div class="media-body">
-                        <h4><a href="#">IMDM top 250 Movies</a></h4>
-                        <span class="published-time"><i class="fa fa-calendar"></i> 6 Days ago</span>
-                      </div>
-                    </div>
-                  </li>
-                  <li>
-                    <div class="media">
-                      <div class="media-left">
-                        <a href="#"><img class="img-responsive" src="assets/img/blog/avatar/avatar4.jpg" alt=""></a>
-                      </div>
-                      <div class="media-body">
-                        <h4><a href="#">Meteor.JS Fundamentals</a></h4>
-                        <span class="published-time"><i class="fa fa-calendar"></i> 7 Days ago</span>
-                      </div>
-                    </div>
-                  </li>
+          <?php endforeach;?>
+
                 </ul>
               </aside>
               <!-- Subscribe Widget -->
               <aside class="widget subscribe-widget wow fadeInUp" data-wow-delay="0.3s">
                 <h2 class="widget-title">Subscribe</h2>
                 <div class="subscribe-area">
-                  <p>Subscribe to our news latter to get regular update and blog posts.</p>
+                  <p>Subscribe to our news letters to get regular updates and blog posts.</p>
                   <form class="form-group">
                     <div class="input-group">
                       <input type="email" class="form-control input-block-level" placeholder="hello@youremail.com">
@@ -236,7 +185,7 @@
                 <div class="clearfix">
                   <ul>
                       <?php foreach($categories as $category):?>
-                    <li><a href="<?php echo site_url("home/category/{$category->category_slug}")?>"><?php echo $category->category_name?></a></li>
+                    <li><a href="<?php echo site_url("home/blog_category/{$category->category_slug}")?>"><?php echo $category->category_name?></a></li>
 <?php endforeach ?>
                 </ul>
                 </div>

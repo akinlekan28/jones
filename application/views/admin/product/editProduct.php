@@ -54,13 +54,19 @@
             <div class="form-group">
                     <label for="exampleInputEmail1">Product Category</label>
                    <select class="form-control" name="category_id">
-                       <option value=""></option>
+                       <option value="<?php echo $product->category_id?>"><?php echo $product->getCategory()?></option>
                        <?php foreach ($categories as $category):?>
                        <option value="<?php echo $category->category_id?>"><?php echo $category->category_name?></option>
                        <?php endforeach;?>
                    </select>
                     <p><?php echo form_error('category_id')?></p>
                 </div>
+
+            <div class="form-group">
+                <label for="exampleInputEmail1">Product Weight</label>
+                <input type="number" class="form-control" id="exampleInputEmail1" name="product_weight" value="<?php echo $product->product_weight?>">
+                <p><?php echo form_error('product_weight')?></p>
+            </div>
 
             <div class="form-group">
                 <label for="exampleInputPassword1">Product Description</label>

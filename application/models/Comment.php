@@ -70,4 +70,23 @@ class Comment extends MY_Model
         ),
 
     );
+
+    public function getPostName($post_id = NULL)
+    {
+         if ($post_id) {
+            $post = $this->blog->getOne('', array('is_delete' => 0, 'post_id' => $post_id));
+            if ($post->post_id) {
+                return $post->post_title;
+            } else {
+                return NULL;
+            }
+        } else {
+            $post = $this->blog->getOne('', array('is_delete' => 0, 'post_id' => $this->post_id));
+            if ($post->post_id) {
+                return $post->post_title;
+            } else {
+                return NULL;
+            }
+        }
+    }
 }

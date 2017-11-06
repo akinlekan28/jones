@@ -52,7 +52,7 @@
             <p style="color: #ffffff">Posts</p> <?php echo $posts ?>
         </div>
 		<div class="blank-page col-sm-3 bg-color">
-            <p style="color: #ffffff">Comments</p> 66
+            <p style="color: #ffffff">Comments</p> <?php echo $comments?>
         </div>
     </div>
 	<br><br><br>
@@ -67,7 +67,6 @@
                 <th style="color: #ffffff">Email</th>
                 <th style="color: #ffffff">Privilege</th>
                 <th style="color: #ffffff">Date Registered</th>
-                <th style="color: #ffffff">Action</th>
                 </thead>
                 <tbody>
                 <?php
@@ -79,12 +78,6 @@
 						<td><?php echo $user->email; ?></td>
                         <td><?php echo $user->privilege; ?></td>
                         <td><?php echo $user->date_registered; ?></td>
-                        <td> <?php if($u->user_id !== $user->user_id ):?>
-						<a href="#" data="<?php echo $user->user_id; ?>" class="delete"><i class="fa fa-trash" style="color: #EB5E28;"></i></a>
-		<?php else: ?>
-		<p>No action needed for current user</p>
-		<?php endif;?>
-						</td>
                     </tr>
                     <?php $sn ++;
                 endforeach?>
@@ -94,45 +87,6 @@
         </div>
 	</div>
 </div>
-
-<script>
-    $('.delete').click(function (){
-        var user_id = $(this).attr('data');
-        deleteUser(user_id);
-    });
-
-    function deleteUser(user_id){
-        swal({
-                title: "Are you sure?",
-                text: "You will not be able to recover this User Information!",
-                type: "warning",
-                showCancelButton: true,
-                confirmButtonColor: "#DD6B55",
-                confirmButtonText: "Yes, Delete It!",
-                cancelButtonText: "No, Cancel Delete!",
-                closeOnConfirm: false,
-                closeOnCancel: true
-            },
-            function() {
-                var link = 'admin/deleteUser/'+user_id;
-                $.ajax({
-                    url: link,
-                    type: 'DELETE',
-                })
-                    .done(function(data){
-                            swal("Deleted" , "User Removed" , "success")
-                        },
-                        function(){
-                            location.reload();
-                        })
-                    .error(function(data){
-                        swal("Oops" , "Error Removing User")
-                    });
-            });
-    }
-
-</script>
-
 
 <script type="text/javascript">
     $(document).ready(function() {

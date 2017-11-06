@@ -18,6 +18,8 @@ class Product extends MY_Model
 
     public $product_pictures;
 
+    public $product_weight;
+
     public $category_id;
 
     public $product_slug;
@@ -64,6 +66,12 @@ class Product extends MY_Model
         'product_pictures' =>array(
             'type' => 'VARCHAR',
             'constraint'=> 500,
+            'null' => FALSE,
+        ),
+
+        'product_weight' =>array(
+            'type' => 'INT',
+            'constraint' => 100,
             'null' => FALSE,
         ),
 
