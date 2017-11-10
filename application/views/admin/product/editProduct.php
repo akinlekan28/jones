@@ -69,6 +69,16 @@
             </div>
 
             <div class="form-group">
+                <label for="exampleInputEmail1">Product Price</label>
+                <input type="text" class="form-control" id="exampleInputEmail1" name="product_price" value="<?php echo $product->product_price?>">
+            </div>
+
+            <div class="form-group">
+                <label for="exampleInputEmail1">Product SKU</label>
+                <input type="text" class="form-control" id="exampleInputEmail1" name="product_price" value="<?php echo $product->sku?>" disabled>
+            </div>
+
+            <div class="form-group">
                 <label for="exampleInputPassword1">Product Description</label>
                 <textarea class="summernote" name="product_description"><?php echo $product->product_description?></textarea>
                 <p><?php echo form_error('product_description')?></p>

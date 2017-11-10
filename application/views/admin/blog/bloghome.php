@@ -23,16 +23,16 @@
                 </p>
                 <div class="blog-one-footer">
                   <a href="<?php echo site_url("home/blog_post/{$blogPost->slug_title}")?>">Read More</a>
-                  <i class="icon-bubbles"></i> <?php echo $comment?> Comments 
-                  <form method="get"> 
-                  <input type="hidden" value=<?php echo $blogPost->post_id ?> name="comment"?>
-                  </form>               
+                    <?php $comment = $this->comment->count(array('is_delete' => 0, 'post_id' => $blogPost->post_id)) ?>
+                  <i class="icon-bubbles"></i> <?php echo $comment?> Comments
+                    &nbsp;&nbsp;<i class="fa fa-eye"></i> <?php echo $blogPost->post_views?> Views
                 </div>
               </div>
             </div><!-- Blog Item Wrapper Ends-->
             &nbsp;
           </div>
 <?php endforeach;?>
+            <?php echo $this->pagination->create_links(); ?>
 
 </div><!-- Row Ends -->
       </div><!-- Container Ends -->

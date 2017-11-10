@@ -20,6 +20,8 @@ class Blog extends MY_Model
 
     public $post_pictures;
 
+    public $post_views;
+
     public $date_added;
 
     public $date_edited;
@@ -70,6 +72,12 @@ class Blog extends MY_Model
             'type' => 'VARCHAR',
             'constraint' => 350,
             'null' => FALSE
+        ),
+
+        'post_views' =>array(
+            'type' => 'INT',
+            'constraint' => 11,
+            'null' => FALSE,
         ),
 
         'date_added' => array(
@@ -132,6 +140,42 @@ class Blog extends MY_Model
                 return NULL;
             }
         }
+    }
+
+    public function add_count($slug)
+    {
+        $this->load->helper('cookie');
+
+        $check_visitor = $this->input->cookie(urldecode($slug), FALSE);
+
+        $ip = $this->input->ip_address();
+
+        if ($check_visitor == false) {
+            $cookie = array(
+                "name"   => urldecode($slug),
+                "value"  => "$ip",
+                "expire" =>  time() + 7200,
+                "secure" => false
+            );
+            $this->input->set_cookie[$cookie];
+
+            $this->blog->update_counter(urldecode($slug));
+        }
+    }
+
+    public function update_counter($slug) {
+
+        $this->db->where('slug_title', urldecode($slug));
+
+        $this->db->select('post_views');
+
+        $count = $this->db->get('blog')->row();
+
+        $this->db->where('slug_title', urldecode($slug));
+
+        $this->db->set('post_views', ($count->post_views + 1));
+
+        $this->db->update('blog');
     }
 
 }

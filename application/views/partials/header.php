@@ -9,7 +9,6 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<!-- Mirrored from demo.graygrids.com/themes/engage/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 04 Oct 2017 12:53:42 GMT -->
 <head>
     <meta charset="utf-8">
     <!-- Viewport Meta Tag -->
@@ -24,8 +23,6 @@
     <!-- Slicknav Css -->
     <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/css/slicknav.css">
     <!-- Color Switcher -->
-<!--    <link rel="stylesheet" type="text/css" href="--><?php //echo base_url();?><!--assets/css/color-switcher.css">-->
-    <!-- Responsive Style -->
     <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/css/responsive.css">
     <!--Fonts-->
     <link rel="stylesheet" media="screen" href="<?php echo base_url();?>assets/fonts/font-awesome/font-awesome.min.css">
@@ -57,6 +54,7 @@
             background-color: #9c3 !important;
             color: #ffffff !important;
         }
+
     </style>
 </head>
 <body>
@@ -64,7 +62,7 @@
 <!-- Header area wrapper starts -->
 <header id="header-wrap">
     <!-- Navbar Starts -->
-    <nav class="navbar navbar-expand-md">
+    <nav class="navbar navbar-fixed-top navbar-expand-md">
         <div class="container">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">

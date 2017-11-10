@@ -28,9 +28,15 @@ class Home extends MY_Controller
 
     public function blog( $comment = NULL)
     {
-        $data['blogPosts'] = $this->blog->getAll('', array('is_delete' => 0), '','','','','post_id');
+        $config['base_url'] = base_url() . 'home/blog/';
+        $config['total_rows'] = $this->db->count_all('blog');
+        $config['per_page'] = 3;
+        $config['uri_segment'] = 3;
+
+        $this->pagination->initialize($config);
+
+        $data['blogPosts'] = $this->blog->getAll('', array('is_delete' => 0), '','3','','','post_id');
         $data['categories'] = $this->category->getAll('', array('is_delete' => 0));
-        $data['comment'] = $this->comment->count('', array('is_delete' => 0, 'post_id' => $comment));
         $this->viewengine->_output(['admin/blog/bloghome'], $data);
     }
 
@@ -70,11 +76,12 @@ class Home extends MY_Controller
             }
         }
 
-        $data['popularPosts'] = $this->blog->getAll('', array('is_delete' => 0),'', '4', 'count(category_id) DESC', 'category_id');
+        $data['popularPosts'] = $this->blog->getAll('', array('is_delete' => 0),'', '4', 'count(post_views) DESC', 'category_id');
         $data['comments'] = $this->comment->getAll('', array('is_delete' => 0, 'post_id' => $postId));
         $data['similarPosts'] = $this->blog->getAll('', array('is_delete' => 0, 'category_id' => $category, 'post_id !=' => $postId), '', '3', '', '', 'post_id');
         $data['categories'] = $this->category->getAll('', array('is_delete' => 0));
         $data['post'] = $categoryId;
+        $this->blog->add_count($slug);
         $this->viewengine->_output(['admin/blog/singlepost'], $data);
     }
 
@@ -117,5 +124,22 @@ class Home extends MY_Controller
         
         $data['categories'] = $this->category->getAll('', array('is_delete' => 0));
         $this->viewengine->_output(['contact'], $data);
+    }
+
+    public function product_details($productSlug = NULL)
+    {
+        $product = $this->product->getOne('', array('is_delete' => 0, 'product_slug' => $productSlug));
+//        if($product->product_id) {
+//            $category_id = $category->category_id;
+//        }
+//        else {
+//            return;
+//        }
+
+        $data['categories'] = $this->category->getAll('', array('is_delete' => 0));
+        $data['product'] = $product;
+//        $data['productcategories'] = $this->product->getAll('', array('is_delete' => 0, 'category_id' => $category_id));
+
+        $this->viewengine->_output(['admin/product/singleproduct'], $data);
     }
 }

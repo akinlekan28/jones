@@ -46,12 +46,14 @@
             <table id="example" class="table table-striped datatable-example">
                 <thead>
                 <th>S/N</th>
-                <th>Product Picture</th>
-                <th>Product Name</th>
-                <th>Product Model</th>
-                <th>Product Weight</th>
-                <th>Product Category</th>
-                <th>Date Created</th>
+                <th>Picture</th>
+                <th>Name</th>
+                <th>Model</th>
+                <th>Price</th>
+                <th>SKU</th>
+                <th>Weight</th>
+                <th>Category</th>
+                <th>Date Added</th>
                 <th>Action</th>
                 </thead>
                 <tbody>
@@ -63,6 +65,8 @@
                         <td><img src="<?php echo base_url("$product->product_pictures")?>" style="height:100px; width:100px;"></td>
                         <td><?php echo $product->product_name; ?></td>
                         <td><?php echo $product->product_model; ?></td>
+                        <td>&nbsp;N<?php echo $product->product_price?></td>
+                        <td><?php echo $product->sku; ?></td>
                         <td><?php echo $product->product_weight?>&nbsp;KG</td>
                         <td><?php echo $product->getCategory(); ?></td>
                         <td><?php echo $product->date_added; ?></td>

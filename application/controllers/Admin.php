@@ -90,7 +90,9 @@ class Admin extends MY_Controller
 
     public function addProduct()
     {
-        $data = [];
+        $this->load->helper("string_helper");
+        $randomString = generateRandomString(4);
+
         if($this->input->post() && $this->form_validation->run('product'))
         {
             $post = $this->input->post();
@@ -120,6 +122,8 @@ class Admin extends MY_Controller
                     'product_description' => $clean['product_description'],
                     'product_pictures' => 'uploads/product/' . $this->upload->data('file_name'),
                     'product_weight' => $clean['product_weight'],
+                    'product_price' => number_format($clean['product_price'] , 0 , '.' , ','),
+                    'sku' => $randomString,
                     'category_id' => $clean['category_id'],
                     'date_added' => date("Y-m-d H:m:s"),
                     'product_slug' => slug($clean['product_name']),
@@ -139,6 +143,7 @@ class Admin extends MY_Controller
             }
         }
 
+        $data['sku'] = $randomString;
         $data['categories'] = $this->category->getAll('', array('is_delete' => 0), '', '', 'category_id');
         $this->adminview->_output(['admin/product/addproduct'], $data);
     }
@@ -247,6 +252,7 @@ class Admin extends MY_Controller
                         'product_description' => $clean['product_description'],
                         'product_pictures' => 'uploads/product/' . $this->upload->data('file_name'),
                         'product_weight' => $clean['product_weight'],
+                        'product_price' =>  number_format($clean['product_price'] , '0' , '.' , ','),
                         'category_id' => $clean['category_id'],
                         'product_slug' => slug($clean['product_name']),
                         'date_edited' => date("Y-m-d H:m:s"),
