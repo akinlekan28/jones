@@ -43,6 +43,12 @@ class Installer extends MY_Controller
         $this->dbforge->add_key('comment_id', TRUE);
         $this->dbforge->create_table('comment', TRUE);
 
+        //Add Order Table
+        $this->load->model('Order');
+        $this->dbforge->add_field($this->Order->columns);
+        $this->dbforge->add_key('order_id', TRUE);
+        $this->dbforge->create_table('order', TRUE);
+
         //Add Users Table
         $this->load->model('Users');
         $this->dbforge->add_field($this->Users->columns);

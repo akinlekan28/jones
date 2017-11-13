@@ -6,6 +6,24 @@
  * Time: 9:15 PM
  */
 ?>
+<script src="<?php echo base_url();?>assets/js/jquery-min.js"></script>
+<script src="<?php echo base_url();?>adminassets/js/notify.min.js"></script>
+
+<?php if(isset($response)):?>
+    <?php if($response == TRUE):?>
+        <script type="text/javascript">
+            $(document).ready(function(){
+                $.notify(<?php json_encode($message)?>, "success");
+            });
+        </script>
+    <?php elseif($response == FALSE):?>
+        <script>
+            $(document).ready(function(){
+                $.notify(<?php json_encode($message)?>, "error");
+            });
+        </script>
+    <?php endif?>
+<?php endif?>
 
 <div class="page-header-section">
     <div class="container">
@@ -38,9 +56,9 @@
                     <div class="tab-content">
                         <div role="tabpanel" class="tab-pane active" id="home">
                         <?php echo $product->product_description?>
-                            <p><h6>SKU: </h6><?php echo $product->sku?> </p>
-                            <p><h6>Product Weight: </h6><?php echo $product->product_weight?> KG </p>
-                            <p> <h6>Product Price: </h6><?php echo $product->product_price?> </p>
+                            <p><h6>SKU: </h6><?php echo $product->sku?>
+                            <p><h6>Product Weight: </h6><?php echo $product->product_weight?> KG
+                            <p> <h6>Product Price: </h6><?php echo $product->product_price?>
                         </div>
 
                         <div role="tabpanel" class="tab-pane fade" id="messages">
@@ -49,8 +67,50 @@
                         </div>
                     </div>
                 </div>
-                <input type="submit" class="btn btn-success" name="order" value="Place Order">
+                <br>
+                <input type="submit" style="background-color:#9c3;" class="btn" value="Place Order" data-toggle="modal" data-target="#order">
             </div>
         </div>
     </div>
 </section>
+
+<div class="modal fade" id="order" role="dialog">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title text-md-center" style="color:#9c3;">Order Form</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <form method="post">
+                <div class="modal-body">
+                    <div class="form-group>">
+                        <label for="email">Full Name</label>
+                        <input type="text" class="form-control" name="name" required>
+                        <p><?php echo form_error('name')?></p>
+                    </div>
+
+                    <div class="form-group>">
+                        <label for="email">Phone Number</label>
+                        <input type="text" class="form-control" name="phone" required>
+                        <p><?php echo form_error('phone')?></p>
+                    </div>
+
+                    <div class="form-group>">
+                        <label for="email">Address</label>
+                        <input type="text" class="form-control" name="address" required>
+                        <p><?php echo form_error('address')?></p>
+                    </div>
+
+                    <div class="form-group>">
+                        <label for="password">Quantity</label>
+                        <input type="number" class="form-control" name="quantity" required>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <input type="submit" style="background-color:#9c3;" class="btn" name="order" value="Submit">  <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

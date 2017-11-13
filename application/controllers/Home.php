@@ -16,6 +16,7 @@ class Home extends MY_Controller
             'comment',
             'users',
             'product',
+            'order'
         ));
 
     }
@@ -129,12 +130,41 @@ class Home extends MY_Controller
     public function product_details($productSlug = NULL)
     {
         $product = $this->product->getOne('', array('is_delete' => 0, 'product_slug' => $productSlug));
-//        if($product->product_id) {
-//            $category_id = $category->category_id;
-//        }
-//        else {
-//            return;
-//        }
+        if($product->product_id) {
+            $product_id = $product->product_id;
+            $sku = $product->sku;
+            $price = $product->product_price;
+        }
+        else {
+            return;
+        }
+
+        if ($this->input->post('order'))
+        {
+            $post = $this->input->post();
+            $clean = $this->security->xss_clean($post);
+
+            $value = array(
+                'product_id' => $product_id,
+                'name' => $clean['name'],
+                'address' => $clean['address'],
+                'phone' => $clean['phone'],
+                'quantity' => $clean['quantity'],
+                'sku' => $sku,
+                'price' => $price,
+                'date_added' => date("Y-m-d H:m:s"),
+            );
+            $success = $this->order->insert($value);
+            if($success)
+            {
+                $data['response'] = TRUE;
+                $data['message'] = "Order Successfully Placed";
+            }
+            else {
+                $data['response'] = FALSE;
+                $data['message'] = "Error Placing Order";
+            }
+        }
 
         $data['categories'] = $this->category->getAll('', array('is_delete' => 0));
         $data['product'] = $product;
