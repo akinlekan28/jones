@@ -25,6 +25,29 @@ a.nav-link.active{
   background-color: white !important;
 }
 
+.pagination-links{
+    margin: 30px 0;
+}
+
+a.pagination-links{
+    padding: 8px 13px;
+    margin: 5px;
+    background: #f4f4f4;
+    border: 1px #ccc solid;
+}
+
+.pagination-links strong{
+    padding: 8px 13px;
+    margin: 5px;
+    background: #f4f4f4;
+    border: 1px #ccc solid;
+}
+
+a.pagination-links:hover{
+    background-color: #9c3;
+    color: #ffffff;
+}
+
 .popular-thumb{
   width: 48px;
   height: 48px;

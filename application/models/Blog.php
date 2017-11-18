@@ -178,4 +178,11 @@ class Blog extends MY_Model
         $this->db->update('blog');
     }
 
+    public function getPosts($limit, $offset)
+    {
+        $this->db->order_by('post_id','desc');
+        $result = $this->db->get('blog', $limit, $offset);
+        return $result->result_array();
+    }
+
 }

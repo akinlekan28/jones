@@ -27,16 +27,18 @@ class Home extends MY_Controller
         $this->viewengine->_output('homepage', $data);
     }
 
-    public function blog( $comment = NULL)
+    public function blog()
     {
-        $config['base_url'] = base_url() . 'home/blog/';
+        $config['base_url'] = site_url('home/blog');
         $config['total_rows'] = $this->db->count_all('blog');
         $config['per_page'] = 3;
-        $config['uri_segment'] = 3;
+//        $config['next_link']  = 'Next';
+//        $config['prev_link']  = 'Previous';
+        $config['attributes'] = array('class' => 'pagination-links');
 
         $this->pagination->initialize($config);
 
-        $data['blogPosts'] = $this->blog->getAll('', array('is_delete' => 0), '','3','','','post_id');
+        $data['result'] = $this->blog->getPosts($config['per_page'],$this->uri->segment(3));
         $data['categories'] = $this->category->getAll('', array('is_delete' => 0));
         $this->viewengine->_output(['admin/blog/bloghome'], $data);
     }
@@ -77,7 +79,7 @@ class Home extends MY_Controller
             }
         }
 
-        $data['popularPosts'] = $this->blog->getAll('', array('is_delete' => 0),'', '4', 'count(post_views) DESC', 'category_id');
+        $data['popularPosts'] = $this->blog->getAll('', array('is_delete' => 0),'', '4', 'count(post_views) asc', 'category_id');
         $data['comments'] = $this->comment->getAll('', array('is_delete' => 0, 'post_id' => $postId));
         $data['similarPosts'] = $this->blog->getAll('', array('is_delete' => 0, 'category_id' => $category, 'post_id !=' => $postId), '', '3', '', '', 'post_id');
         $data['categories'] = $this->category->getAll('', array('is_delete' => 0));
