@@ -1,3 +1,26 @@
+<style>
+    .contact-enlarge{
+        font-size: 15px;
+    }
+</style>
+<script src="<?php echo base_url();?>assets/js/jquery-min.js"></script>
+<script src="<?php echo base_url();?>adminassets/js/notify.min.js"></script>
+
+<?php if(isset($response)):?>
+    <?php if($response == TRUE):?>
+        <script type="text/javascript">
+            $(document).ready(function(){
+                $.notify("Message Sent Successfully", "success");
+            });
+        </script>
+    <?php elseif($response == FALSE):?>
+        <script>
+            $(document).ready(function(){
+                $.notify("Error Sending Message", "error");
+            });
+        </script>
+    <?php endif?>
+<?php endif?>
 <section class="contact2-section section">
       <div class="container">
         <div class="row">
@@ -10,32 +33,33 @@
               <div class="col-md-6">
                 <div class="form-group">
                     <label for="name" class="sr-only">Name</label>
-                    <input type="text" placeholder="Your Name" id="name" class="form-control contact-control" name="name" required data-error="Please enter your name">
+                    <input type="text" placeholder="Your Name" class="form-control contact-control" name="name" required data-error="Please enter your name">
                     <div class="help-block with-errors"></div>
                   </div>
 
                   <div class="form-group">
                     <label for="email" class="sr-only">Email</label>
-                    <input type="email" placeholder="Your Email" id="email" class="form-control contact-control" name="email" required data-error="Please enter your Email">
+                    <input type="email" placeholder="Your Email" class="form-control contact-control" name="email" required data-error="Please enter your Email">
                     <div class="help-block with-errors"></div>
                   </div>
 
                   <div class="form-group">
-                    <label for="subject" class="sr-only">Subject</label>
-                    <input type="text" placeholder="Your Subject" id="msg_subject" class="form-control contact-control" name="subject" required data-error="Please enter your message subject">
-                    <div class="help-block with-errors"></div>
+                      <label for="email" class="sr-only">Subject</label>
+                      <input type="text" placeholder="Subject" class="form-control contact-control" name="subject" required data-error="Please enter Email Subject">
+                      <div class="help-block with-errors"></div>
                   </div>
+
               </div>
               <div class="col-md-6">
                 <div class="form-group">
                   <label for="message" class="sr-only">Message</label>
-                  <textarea placeholder="Your Message" rows="7" id="message" class="form-control" name="message" required data-error="Write your message"></textarea>
+                  <textarea placeholder="Your Message" rows="7" class="form-control" name="message" required data-error="Write your message"></textarea>
                   <div class="help-block with-errors"></div>
                 </div>
               </div>
             </div>
             <div class="form-group col-xs-12">
-              <button class="btn btn-common btn-lg btn-block" name="submit" id="form-submit" type="submit"><i class="fa fa-envelope"></i> Submit</button>
+              <button class="btn btn-common btn-lg btn-block" name="submit" type="submit"><i class="fa fa-envelope"></i> Submit</button>
             </div>
           </form>
           </div>
@@ -43,20 +67,20 @@
           <div class="col-md-4 clearfix wow bounceInRight" data-wow-delay="0.4s">
             <div id="google-map-contact2"></div>
             <div class="contact-info2 mt-30">
-              <h2 class="small-title">Contact Info</h2>
+              <h1 class="small-title">Contact Info</h1>
               <ul class="contact-info2">
                 <li>
-                  <p><strong><i class="fa fa-map-marker"></i> Address:</strong> 2367 Nash Street , Dearborn, Michigan</p>
+                  <p class="contact-enlarge"><strong><i class="fa fa-map-marker"></i></strong> 206, Igbosere Street, Obalende Lagos Nigeria.</p>
                 </li>
                 <li>
-                  <p><strong><i class="fa fa-envelope"></i> Mail Us:</strong> <a href="#">yourmail@gmail.com</a></p>
+                  <p class="contact-enlarge"><strong><i class="fa fa-envelope"></i> Mail Us:</strong> <a href="#">yourmail@gmail.com</a></p>
                 </li>
                 <li>
-                  <p><strong><i class="fa fa-phone"></i> Phone:</strong> +313-240-4015</p>
+                  <p class="contact-enlarge"><strong><i class="fa fa-phone"></i> Phone:</strong> +234 703 506 5479</p>
                 </li>
-                <li>
-                  <p><strong><i class="fa fa-print"></i> Fax:</strong> +313-555-4015</p>
-                </li>
+<!--                <li>-->
+<!--                  <p><strong><i class="fa fa-print"></i> Fax:</strong> +313-555-4015</p>-->
+<!--                </li>-->
               </ul>
             </div>
           </div>

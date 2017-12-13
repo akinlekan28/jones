@@ -32,8 +32,6 @@ class Home extends MY_Controller
         $config['base_url'] = site_url('home/blog');
         $config['total_rows'] = $this->db->count_all('blog');
         $config['per_page'] = 3;
-//        $config['next_link']  = 'Next';
-//        $config['prev_link']  = 'Previous';
         $config['attributes'] = array('class' => 'pagination-links');
 
         $this->pagination->initialize($config);
@@ -124,7 +122,41 @@ class Home extends MY_Controller
 
     public function contactus()
     {
-        
+        if($this->input->post()) {
+            $post = $this->input->post();
+
+            $this->load->library('email');
+
+            $name = $post['name'];
+            $email = $post['email'];
+            $message = $post['message'];
+            $subject = $post['subject'];
+            $receiver = 'hi@olalekan.xyz';
+
+            $config['protocol'] = 'smtp';
+            $config['smtp_host'] = 'ssl://scp27.hosting.reg.ru';
+            $config['smtp_port'] = '465';
+            $config['smtp_user'] = 'hi@olalekan.xyz';
+            $config['smtp_pass'] = 'Motherland12';
+            $config['mailtype'] = 'html';
+            $config['charset'] = 'iso-8859-1';
+            $config['wordwrap'] = TRUE;
+            $config['newline'] = "\r\n";
+
+            $this->email->initialize($config);
+
+            $this->email->from($email, $name);
+            $this->email->to($receiver);
+            $this->email->subject($subject);
+            $this->email->message($message);
+            if ($this->email->send()) {
+                $data['response'] = TRUE;
+            }
+            else {
+                $data['response'] = FALSE;
+            }
+
+        }
         $data['categories'] = $this->category->getAll('', array('is_delete' => 0));
         $this->viewengine->_output(['contact'], $data);
     }
