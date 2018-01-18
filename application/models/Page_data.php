@@ -56,6 +56,24 @@ class Page_data
             ]
         ],
 
+        'admin_orders' => [
+            'title' => 'Orders',
+            'info' => 'View Orders',
+            'tab' => 'Edtel Admin | Orders',
+            'links' => [
+
+            ]
+        ],
+
+        'admin_access' => [
+            'title' => 'Access Control',
+            'info' => 'Change user access',
+            'tab' => 'Edtel Admin | Access Control',
+            'links' => [
+
+            ]
+        ]
+
     ];
 
     function get_data($page_id)

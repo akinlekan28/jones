@@ -13,13 +13,13 @@
     <?php if($response == TRUE):?>
         <script type="text/javascript">
             $(document).ready(function(){
-                $.notify(<?php json_encode($message)?>, "success");
+                $.notify("Order Successfully Placed", "success");
             });
         </script>
     <?php elseif($response == FALSE):?>
         <script>
             $(document).ready(function(){
-                $.notify(<?php json_encode($message)?>, "error");
+                $.notify("Error Placing Order", "error");
             });
         </script>
     <?php endif?>
@@ -86,19 +86,16 @@
                     <div class="form-group>">
                         <label for="email">Full Name</label>
                         <input type="text" class="form-control" name="name" required>
-                        <p><?php echo form_error('name')?></p>
                     </div>
 
                     <div class="form-group>">
                         <label for="email">Phone Number</label>
                         <input type="text" class="form-control" name="phone" required>
-                        <p><?php echo form_error('phone')?></p>
                     </div>
 
                     <div class="form-group>">
                         <label for="email">Address</label>
                         <input type="text" class="form-control" name="address" required>
-                        <p><?php echo form_error('address')?></p>
                     </div>
 
                     <div class="form-group>">

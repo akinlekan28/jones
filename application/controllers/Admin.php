@@ -15,7 +15,8 @@ class Admin extends MY_Controller
             'product',
             'blog',
             'users',
-            'comment'
+            'comment',
+            'order'
         ));
         $this->_secure();
     }
@@ -529,6 +530,50 @@ class Admin extends MY_Controller
         }
         $data['users'] = $this->users->getAll('', array('is_delete' => 0, 'user_id !=' => $this->current_user->user_id));
         $this->adminview->_output(['admin/access/access'], $data);
+    }
+
+    public function orders(){
+         if(!$this->current_user->is(array('Admin')))
+        {
+            $data['title'] = "Access Denied";
+            $data['message'] = 'You do not have permission to visit this page!';
+
+            $this->load->view('errors/404' , $data);
+
+            return;
+        }
+
+        $data['orders'] = $this->order->getAll('', array(''), '', '', '', '', 'order_id');
+
+        $this->adminview->_output(['admin/product/orders'], $data);
+    }
+
+    public function orderDelivered($order_id){
+    
+        $order = $this->order->getOne('', array('order_id' => $order_id, 'is_delete' => 0));
+
+        if(!$order->order_id)
+        {
+            echo json_encode(0);
+        }
+        elseif($order->order_id)
+        {
+            $value = array(
+                'is_delete' => 1
+            );
+
+            $success = $order->update($value , $order_id);
+
+            if($success)
+            {
+                echo json_encode(1);
+            }
+            else
+            {
+                echo json_encode(0);
+
+            }
+        }    
     }
 
 }

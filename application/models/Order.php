@@ -14,6 +14,8 @@ class Order extends MY_Model
 
     public $product_id;
 
+    public $price;
+
     public $address;
 
     public $phone;

@@ -231,12 +231,12 @@
                     </div>
                     <div class="skill">
                         <p>
-                            Access Control System 98%
+                            Access Control System 100%
                         </p>
                         <div class="progress">
-                            <div class="progress-bar animated" role="progressbar"  data-percentage="98">
+                            <div class="progress-bar animated" role="progressbar"  data-percentage="100">
                     <span class="sr-only">
-                    98% Complete
+                    100% Complete
                     </span>
                             </div>
                         </div>
@@ -267,7 +267,7 @@
                     </div>
                     <div class="skill">
                         <p>
-                            Fire and Smoke Detector Alarm System 97%
+                            Fire & Smoke Detector Alarm System 97%
                         </p>
                         <div class="progress">
                             <div class="progress-bar animated" role="progressbar"  data-percentage="97">
@@ -284,12 +284,12 @@
                 <div class="skill-shortcode">
                     <div class="skill">
                         <p>
-                            Fire and Smoke Detector Alarm System 95%
+                            Buglary & GSM Alarm System 97%
                         </p>
                         <div class="progress">
-                            <div class="progress-bar animated" role="progressbar"  data-percentage="95">
+                            <div class="progress-bar animated" role="progressbar"  data-percentage="97">
                     <span class="sr-only">
-                    95% Complete
+                    97% Complete
                     </span>
                             </div>
                         </div>

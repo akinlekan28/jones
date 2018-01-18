@@ -131,13 +131,13 @@ class Home extends MY_Controller
             $email = $post['email'];
             $message = $post['message'];
             $subject = $post['subject'];
-            $receiver = 'hi@olalekan.xyz';
+            $receiver = 'support@edtel.com.ng';
 
             $config['protocol'] = 'smtp';
             $config['smtp_host'] = 'ssl://scp27.hosting.reg.ru';
             $config['smtp_port'] = '465';
-            $config['smtp_user'] = 'hi@olalekan.xyz';
-            $config['smtp_pass'] = 'Motherland12';
+            $config['smtp_user'] = 'support@edtel.com.ng';
+            $config['smtp_pass'] = 'checkmate12';
             $config['mailtype'] = 'html';
             $config['charset'] = 'iso-8859-1';
             $config['wordwrap'] = TRUE;
@@ -166,6 +166,7 @@ class Home extends MY_Controller
         $product = $this->product->getOne('', array('is_delete' => 0, 'product_slug' => $productSlug));
         if($product->product_id) {
             $product_id = $product->product_id;
+            $product_name = $product->product_name;
             $sku = $product->sku;
             $price = $product->product_price;
         }
@@ -189,14 +190,40 @@ class Home extends MY_Controller
                 'date_added' => date("Y-m-d H:m:s"),
             );
             $success = $this->order->insert($value);
+
             if($success)
             {
                 $data['response'] = TRUE;
-                $data['message'] = "Order Successfully Placed";
+
+                $this->load->library('email');
+                $name = $post['name'];
+                $email = 'newOrder@edtel.com.ng';
+                $message = $clean['name'] . '' . $clean['address'] . '' . $clean['phone'] . '' .  $product_name .  ''  . $clean['quantity'] . '' . $sku . '' . $price ;
+                $subject = "New Order Alert";
+                $receiver = 'support@edtel.com.ng';
+
+                $config['protocol'] = 'smtp';
+                $config['smtp_host'] = 'ssl://scp27.hosting.reg.ru';
+                $config['smtp_port'] = '465';
+                $config['smtp_user'] = 'support@edtel.com.ng';
+                $config['smtp_pass'] = 'checkmate12';
+                $config['mailtype'] = 'html';
+                $config['charset'] = 'iso-8859-1';
+                $config['wordwrap'] = TRUE;
+                $config['newline'] = "\r\n";
+
+                $this->email->initialize($config);
+
+                $this->email->from($email, $name);
+                $this->email->to($receiver);
+                $this->email->subject($subject);
+                $this->email->message($message);
+
+                $this->email->send();
+
             }
             else {
                 $data['response'] = FALSE;
-                $data['message'] = "Error Placing Order";
             }
         }
 

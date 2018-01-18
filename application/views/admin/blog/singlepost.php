@@ -66,11 +66,11 @@
             <section class="about-author-section mt-10">
                 <div class="media wow fadeIn" data-wow-delay="0.3s">
                   <div class="media-left">
-                    <a href="#"><img class="img-circle img-responsive" src="assets/img/blog/avatar/avatarBig1.jpg" alt=""></a>
+                    <a href="#"><img class="img-circle img-responsive" src="<?php echo base_url()?>/assets/img/jones.jpg" alt="" width="70px" height="70px"></a>
                   </div>
                   <div class="media-body">
                     <h4>About Writter</h4>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis cumque, quo omnis rem eum ipsam qui. Tempore perspiciatis unde architecto quia, enim consectetur accusamus quasi omnis voluptatibus aliquid rem mollitia incidunt quibusdam eum, sit magnam, repellendus minima nihil iusto vitae ratione dicta, iste. Vitae, architecto.</p>
+                    <p>JONES EDIANABASI UKO is the MD/CEO EDTEL Integrated System Solutions, Lagos, Nigeria. A leading Security, IT and Telecommunication solution provider. He is a UK Certified Professional in Health Safety and Environment (H.S.E.) from Novelle Institute. He is also a COMPTIA Certified Network Administrator (N+), a Nokia Certified IPRAN Engineer.</p>
                   </div>
                 </div>
             </section>

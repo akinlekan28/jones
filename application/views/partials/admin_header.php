@@ -89,6 +89,8 @@
 
                                 <li><a href="<?php echo site_url('admin/allProduct')?>" class=" hvr-bounce-to-right"><i class="fa fa-list-alt nav_icon"></i>All Product</a></li>
 
+                                <li><a href="<?php echo site_url('admin/orders')?>" class=" hvr-bounce-to-right"><i class="fa fa-shopping-bag nav_icon"></i>Orders</a></li>
+
                             </ul>
                         </li>
 

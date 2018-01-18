@@ -22,6 +22,8 @@
                 <div class="col-sm-4">
                     <p class="copyright-text">
                         ©  2012 - <script>document.write(new Date().getFullYear())</script> Edtel Integrated Systems. All right reserved.
+                        <p><i class="fa fa-envelope"></i> support@edtel.com.ng</p>
+                        <p><i class="fa fa-phone"></i> +234 703 506 5479</p>
                     </p>
                 </div>
                 <div class="col-sm-4">

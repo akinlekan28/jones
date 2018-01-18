@@ -60,7 +60,7 @@
 	<br>
 	<p class="text-center" style="font-size: 20px;">Users Table</p>
 	<div class="content table-responsive table-full-width">
-            <table id="example" class="table table-striped datatable-example " style="background-color: #3BB2D0; color:#ffffff;">
+            <table id="example" class="table table-striped datatable-example bg-color" style="color:#ffffff;">
                 <thead>
                 <th style="color: #ffffff">S/N</th>
                 <th style="color: #ffffff">Full Name</th>
