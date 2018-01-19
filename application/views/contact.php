@@ -73,7 +73,7 @@
                   <p class="contact-enlarge"><strong><i class="fa fa-map-marker"></i></strong> 206, Igbosere Street, Obalende Lagos Nigeria.</p>
                 </li>
                 <li>
-                  <p class="contact-enlarge"><strong><i class="fa fa-envelope"></i> Mail Us:</strong> <a href="#">yourmail@gmail.com</a></p>
+                  <p class="contact-enlarge"><strong><i class="fa fa-envelope"></i> Mail us:</strong> <a href="#">support@edtel.com.ng</a></p>
                 </li>
                 <li>
                   <p class="contact-enlarge"><strong><i class="fa fa-phone"></i> Phone:</strong> +234 703 506 5479</p>

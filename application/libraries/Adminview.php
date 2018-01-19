@@ -18,7 +18,6 @@ class Adminview
     }
     public function _output($view_url, $data = array())
     {
-        //        $this->CI->output->enable_profiler(TRUE);
         $this->CI->load->model('page_data');
         $data['view_url'] = &$view_url;
         $data['u'] = $this->CI->current_user;

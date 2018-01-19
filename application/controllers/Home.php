@@ -113,7 +113,6 @@ class Home extends MY_Controller
         else {
             return;
         }
-        
         $data['categories'] = $this->category->getAll('', array('is_delete' => 0));
         $data['productcategories'] = $this->product->getAll('', array('is_delete' => 0, 'category_id' => $category_id));
        
@@ -229,8 +228,7 @@ class Home extends MY_Controller
 
         $data['categories'] = $this->category->getAll('', array('is_delete' => 0));
         $data['product'] = $product;
-//        $data['productcategories'] = $this->product->getAll('', array('is_delete' => 0, 'category_id' => $category_id));
-
+        
         $this->viewengine->_output(['admin/product/singleproduct'], $data);
     }
 }
